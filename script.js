@@ -65,8 +65,8 @@ const stockChart = new Chart(ctx, {
 // Sign up at: https://newsapi.org (it's free!)
 // Replace 'YOUR_API_KEY' with the key they give you
 
-const NEWS_API_KEY = '57a041ed63ff4dd7a6ca991afb8ec31a';
-const NEWS_URL = `https://newsapi.org/v2/everything?q=stocks+finance&apiKey=${NEWS_API_KEY}&pageSize=10`;
+// const NEWS_API_KEY = '57a041ed63ff4dd7a6ca991afb8ec31a';
+const NEWS_URL = 'https://newsapi.org/v2/everything?q=stocks+finance&apiKey=57a041ed63ff4dd7a6ca991afb8ec31a&pageSize=10';
 
 // This function fetches news from the internet
 async function loadNews() {
