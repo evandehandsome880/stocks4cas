@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- This tells the browser basic info -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My CAS Finance Site 🐱</title>
+    
+    <!-- Links to your CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===== NAVIGATION BAR ===== -->
+    <nav class="navbar">
+        <div class="logo">
+            🐱 FinanceCat
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="news.html">News</a>
+            <a href="about.html">About Us</a>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="main-container">
+
+        <!-- LEFT SIDE: Stock Chart -->
+        <div class="left-panel">
+            <h2>Market Overview</h2>
+            
+            <!-- This box will hold our chart -->
+            <div class="chart-box">
+                <canvas id="stockChart"></canvas>
+            </div>
+
+            <!-- Stock Stats Below Chart -->
+            <div class="stats-box">
+                <h3>Volatility Stats</h3>
+                <div class="stat-item">
+                    <span>MSFT</span>
+                    <span class="green">$380 +3%</span>
+                </div>
+                <div class="stat-item">
+                    <span>INTC</span>
+                    <span class="green">$42 +2%</span>
+                </div>
+                <div class="stat-item">
+                    <span>RBLX</span>
+                    <span class="red">$38 -1%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: News Feed -->
+        <div class="right-panel">
+            <h2>Latest News</h2>
+            
+            <!-- News articles will appear here automatically -->
+            <div id="news-container">
+                <!-- JavaScript will fill this in -->
+                <p>Loading news...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Links to your JavaScript files -->
+    <!-- Chart.js is a free library for drawing charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
