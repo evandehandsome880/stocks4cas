@@ -26,6 +26,7 @@ import sys
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 
@@ -38,6 +39,7 @@ FEEDS = [
 
 PER_FEED = 8          # items to keep from each feed
 MAX_ITEMS = 16        # total items written out
+MIN_PER_SOURCE = 4    # keep at least this many from each feed before filling by date
 TIMEOUT = 25          # seconds per HTTP request
 USER_AGENT = "stocks4cas-news-snapshot/1.0 (student project; educational use)"
 
@@ -107,6 +109,35 @@ def parse_feed(xml_bytes, source_name):
     return items
 
 
+def pick(collected, max_items, min_per_source):
+    """Choose the final list: a minimum number of items from every publisher
+    first (so one fast-moving feed cannot crowd out the rest), then the newest
+    of whatever is left, finally sorted newest-first."""
+    by_source = {}
+    for item in collected:
+        by_source.setdefault(item["source"], []).append(item)
+
+    chosen = []
+    depth = 0
+    while len(chosen) < max_items:
+        added = False
+        for items in by_source.values():
+            if depth < min_per_source and depth < len(items) and len(chosen) < max_items:
+                chosen.append(items[depth])
+                added = True
+        if not added:
+            break
+        depth += 1
+
+    for item in collected:
+        if len(chosen) >= max_items:
+            break
+        if item not in chosen:
+            chosen.append(item)
+
+    return sorted(chosen, key=lambda a: a["published"], reverse=True)
+
+
 def link_ok(url):
     """True only if the article URL really serves a page."""
     try:
@@ -152,17 +183,20 @@ def main():
         say(f"  {feed['source']:20} {len(items):>2} items in feed, {kept} kept")
 
     collected.sort(key=lambda a: a["published"], reverse=True)
-    collected = collected[:MAX_ITEMS]
+    collected = collected[: MAX_ITEMS * 2]      # generous pool, then balance
+    collected = pick(collected, MAX_ITEMS, MIN_PER_SOURCE)
 
     if verify:
         say("")
         say("link check")
-        verified = []
-        for item in collected:
-            if link_ok(item["url"]):
-                verified.append(item)
-            else:
+        # parallel: sixteen sequential requests would take far longer than the
+        # rest of the build put together
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            results = list(pool.map(lambda item: (item, link_ok(item["url"])), collected))
+        for item, ok in results:
+            if not ok:
                 say(f"  dropped (unreachable): {item['url']}")
+        verified = [item for item, ok in results if ok]
         say(f"  {len(verified)}/{len(collected)} links resolve")
         collected = verified
 

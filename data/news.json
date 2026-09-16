@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-16T03:22:34Z",
+  "generated": "2026-09-16T03:25:20Z",
   "note": "Snapshot of public RSS feeds. Headlines and summaries are quoted verbatim from the publisher and each item links to the original article. This is a snapshot, not a live feed.",
   "feeds": [
     {
@@ -77,34 +77,6 @@
       "summary": "BRICS leaders have asserted the need to use local currencies in intra-BRICS trade to cut dependency on dollar."
     },
     {
-      "title": "AI app ads promoting 'objectification of women' banned by watchdog",
-      "url": "https://www.bbc.co.uk/news/articles/cmlyrn2n4zg5o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC Business",
-      "published": "2026-09-15T23:27:17Z",
-      "summary": "The ad regulator said it had \"zero-tolerance\" for ads promoting AI tools that could sexualise or objectify women."
-    },
-    {
-      "title": "The extreme engineering of aircraft windows",
-      "url": "https://www.bbc.co.uk/news/articles/c0lr69zeyrwo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC Business",
-      "published": "2026-09-15T23:19:38Z",
-      "summary": "Few companies have the technology to make aircraft windows which are getting harder to make."
-    },
-    {
-      "title": "We are all new job starters - here's how we got through the first few days",
-      "url": "https://www.bbc.co.uk/news/articles/cm2qn163053o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC Business",
-      "published": "2026-09-15T23:14:26Z",
-      "summary": "Four recent job starters share their tips on what helped them have a smooth transition and survive their first few days."
-    },
-    {
-      "title": "Complaints to watchdog about water firms jump 84%",
-      "url": "https://www.bbc.co.uk/news/articles/cjy5z9l0395ro?at_medium=RSS&at_campaign=rss",
-      "source": "BBC Business",
-      "published": "2026-09-15T23:14:08Z",
-      "summary": "Many complaints were about affordability, after customers saw steep hikes to bills."
-    },
-    {
       "title": "Iran war has cost on average $246 million per day in its first five months, CBO finds",
       "url": "https://www.cnbc.com/2026/09/15/cbo-iran-war-cost-pentagon-weapons.html",
       "source": "CNBC US Top News",
@@ -119,18 +91,46 @@
       "summary": "Comments from the two tech leaders landed days after Anthropic's Dario Amodei published an essay urging the AI industry to slow the pace of model development."
     },
     {
-      "title": "Nvidia CEO Huang attending Trump's state dinner for China's Xi: Source",
-      "url": "https://www.cnbc.com/2026/09/15/nvidia-jensen-huang-trump-xi.html",
-      "source": "CNBC US Top News",
-      "published": "2026-09-15T22:06:16Z",
-      "summary": "Jensen Huang appeared to side with Trump as the president pushed back on tech CEOs' warnings about the risks of rapid AI advancement."
+      "title": "How a Costco partner's bankruptcy could benefit its biggest rival",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/costco-partners-bankruptcy-could-benefit-133300901.html",
+      "source": "Yahoo Finance",
+      "published": "2026-09-15T13:33:00Z",
+      "summary": ""
     },
     {
-      "title": "Trump says Kennedy Center will stay closed without renovation unless his name is added back",
-      "url": "https://www.cnbc.com/2026/09/15/trump-kennedy-center-name-ruling.html",
-      "source": "CNBC US Top News",
-      "published": "2026-09-15T21:46:22Z",
-      "summary": "The ruling comes four months after the same judge ordered that the Kennedy Center could not be renamed to include President Trump's name."
+      "title": "Counting the votes: Warsh faces a tough battle as the Fed girds for expected interest rate hike",
+      "url": "https://www.cnbc.com/2026/09/14/counting-the-votes-warsh-faces-tough-battle-as-fed-girds-for-expected-rate-hike.html",
+      "source": "CNBC Markets",
+      "published": "2026-09-14T19:47:42Z",
+      "summary": "Traders were pricing in a better than 92% probability of a rate increase, as well as a more than 75% chance for another one in December."
+    },
+    {
+      "title": "Stocks could have a tough road ahead if the Fed hikes rates: Chart of the Day",
+      "url": "https://finance.yahoo.com/markets/article/stocks-could-have-a-tough-road-ahead-if-the-fed-hikes-rates-chart-of-the-day-155218683.html",
+      "source": "Yahoo Finance",
+      "published": "2026-09-14T15:52:18Z",
+      "summary": ""
+    },
+    {
+      "title": "YPF Lines Up Buyers for $24 Billion Vaca Muerta LNG Project",
+      "url": "https://finance.yahoo.com/energy/articles/ypf-lines-buyers-24-billion-154703112.html",
+      "source": "Yahoo Finance",
+      "published": "2026-09-14T15:47:03Z",
+      "summary": ""
+    },
+    {
+      "title": "Caterpillar Falls 4% While Deere Edges Higher: Is the Data Center Power Trade Unwinding?",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/caterpillar-falls-4-while-deere-154049131.html",
+      "source": "Yahoo Finance",
+      "published": "2026-09-14T15:40:49Z",
+      "summary": ""
+    },
+    {
+      "title": "Inflation is outpacing wage growth again, squeezing Americans\u2019 paychecks",
+      "url": "https://www.cnbc.com/2026/09/12/inflation-is-outpacing-wage-growth-again-squeezing-americans-paychecks.html",
+      "source": "CNBC Markets",
+      "published": "2026-09-12T12:49:15Z",
+      "summary": "In August, consumer prices rose 3.4% over the past year while wages increased just 3.1%."
     }
   ]
 }

@@ -1,5 +1,5 @@
 === stocks4cas news snapshot ===
-fetched    : 2026-09-16 03:22 UTC
+fetched    : 2026-09-16 03:25 UTC
 verify     : on (every link is checked before it is written)
 
   BBC Business         43 items in feed, 8 kept
@@ -19,14 +19,14 @@ kept articles (newest first)
   2026-09-15T23:40:07Z  BBC Business     Do you feel guilty when calling in sick at work? This might be why...
   2026-09-15T23:39:55Z  BBC Business     Why doomsday warnings are not the only threat to the AI juggernaut
   2026-09-15T23:28:01Z  CNBC Markets     Why de-dollarization discussions are more talk, less action
-  2026-09-15T23:27:17Z  BBC Business     AI app ads promoting 'objectification of women' banned by watchdog
-  2026-09-15T23:19:38Z  BBC Business     The extreme engineering of aircraft windows
-  2026-09-15T23:14:26Z  BBC Business     We are all new job starters - here's how we got through the first few da
-  2026-09-15T23:14:08Z  BBC Business     Complaints to watchdog about water firms jump 84%
   2026-09-15T22:33:45Z  CNBC US Top News Iran war has cost on average $246 million per day in its first five mont
   2026-09-15T22:17:47Z  CNBC US Top News Nvidia's Huang diverges with CEOs of Anthropic, OpenAI on AI safety at D
-  2026-09-15T22:06:16Z  CNBC US Top News Nvidia CEO Huang attending Trump's state dinner for China's Xi: Source
-  2026-09-15T21:46:22Z  CNBC US Top News Trump says Kennedy Center will stay closed without renovation unless his
+  2026-09-15T13:33:00Z  Yahoo Finance    How a Costco partner's bankruptcy could benefit its biggest rival
+  2026-09-14T19:47:42Z  CNBC Markets     Counting the votes: Warsh faces a tough battle as the Fed girds for expe
+  2026-09-14T15:52:18Z  Yahoo Finance    Stocks could have a tough road ahead if the Fed hikes rates: Chart of th
+  2026-09-14T15:47:03Z  Yahoo Finance    YPF Lines Up Buyers for $24 Billion Vaca Muerta LNG Project
+  2026-09-14T15:40:49Z  Yahoo Finance    Caterpillar Falls 4% While Deere Edges Higher: Is the Data Center Power 
+  2026-09-12T12:49:15Z  CNBC Markets     Inflation is outpacing wage growth again, squeezing Americans’ paychecks
 
 wrote JSON   -> C:\Users\Jiang\Downloads\sfc\stocks4cas\data\news.json
 wrote bundle -> C:\Users\Jiang\Downloads\sfc\stocks4cas\news-data.js

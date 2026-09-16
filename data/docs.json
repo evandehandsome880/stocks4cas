@@ -2,7 +2,7 @@
   "generated": "2026-09-16",
   "generator": "build_docs.py",
   "note": "Everything below is read from the repository at build time. Generated bundles (data.js, news-data.js) appear as hashes instead of being quoted back into themselves; docs.js records its own checksum in data/docs.log.",
-  "totalLines": 3484,
+  "totalLines": 3518,
   "tradeCount": 170,
   "logs": [
     {
@@ -13,9 +13,9 @@
     },
     {
       "path": "data/news.log",
-      "bytes": 2256,
-      "sha256": "ee95e3357ebc1ee6950954691f427c4b77695d6d6471179db1502a755988e1bc",
-      "text": "=== stocks4cas news snapshot ===\nfetched    : 2026-09-16 03:22 UTC\nverify     : on (every link is checked before it is written)\n\n  BBC Business         43 items in feed, 8 kept\n  CNBC Markets         30 items in feed, 8 kept\n  CNBC US Top News     30 items in feed, 8 kept\n  Yahoo Finance        49 items in feed, 8 kept\n\nlink check\n  16/16 links resolve\n\nkept articles (newest first)\n  2026-09-16T01:56:24Z  CNBC US Top News BOJ expected to hike rates by 25 basis points to fresh three-decade high\n  2026-09-16T01:53:52Z  CNBC Markets     Indonesia's new finance minister faces an uphill battle on fiscal credib\n  2026-09-16T00:59:20Z  BBC Business     OpenAI boss says world 'right to be afraid' but 'should trust' AI firms\n  2026-09-15T23:52:04Z  CNBC US Top News Inside South Korea\u2019s university programs offering a direct route to Sams\n  2026-09-15T23:50:55Z  BBC Business     UK in talks about joining global defence bank led by Canada\n  2026-09-15T23:40:07Z  BBC Business     Do you feel guilty when calling in sick at work? This might be why...\n  2026-09-15T23:39:55Z  BBC Business     Why doomsday warnings are not the only threat to the AI juggernaut\n  2026-09-15T23:28:01Z  CNBC Markets     Why de-dollarization discussions are more talk, less action\n  2026-09-15T23:27:17Z  BBC Business     AI app ads promoting 'objectification of women' banned by watchdog\n  2026-09-15T23:19:38Z  BBC Business     The extreme engineering of aircraft windows\n  2026-09-15T23:14:26Z  BBC Business     We are all new job starters - here's how we got through the first few da\n  2026-09-15T23:14:08Z  BBC Business     Complaints to watchdog about water firms jump 84%\n  2026-09-15T22:33:45Z  CNBC US Top News Iran war has cost on average $246 million per day in its first five mont\n  2026-09-15T22:17:47Z  CNBC US Top News Nvidia's Huang diverges with CEOs of Anthropic, OpenAI on AI safety at D\n  2026-09-15T22:06:16Z  CNBC US Top News Nvidia CEO Huang attending Trump's state dinner for China's Xi: Source\n  2026-09-15T21:46:22Z  CNBC US Top News Trump says Kennedy Center will stay closed without renovation unless his\n\nwrote JSON   -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data\\news.json\nwrote bundle -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\news-data.js\n"
+      "bytes": 2298,
+      "sha256": "e35335de753692493f64144f02e1eb06c5f90bb0f790c58df9ce5c9041e4a29c",
+      "text": "=== stocks4cas news snapshot ===\nfetched    : 2026-09-16 03:25 UTC\nverify     : on (every link is checked before it is written)\n\n  BBC Business         43 items in feed, 8 kept\n  CNBC Markets         30 items in feed, 8 kept\n  CNBC US Top News     30 items in feed, 8 kept\n  Yahoo Finance        49 items in feed, 8 kept\n\nlink check\n  16/16 links resolve\n\nkept articles (newest first)\n  2026-09-16T01:56:24Z  CNBC US Top News BOJ expected to hike rates by 25 basis points to fresh three-decade high\n  2026-09-16T01:53:52Z  CNBC Markets     Indonesia's new finance minister faces an uphill battle on fiscal credib\n  2026-09-16T00:59:20Z  BBC Business     OpenAI boss says world 'right to be afraid' but 'should trust' AI firms\n  2026-09-15T23:52:04Z  CNBC US Top News Inside South Korea\u2019s university programs offering a direct route to Sams\n  2026-09-15T23:50:55Z  BBC Business     UK in talks about joining global defence bank led by Canada\n  2026-09-15T23:40:07Z  BBC Business     Do you feel guilty when calling in sick at work? This might be why...\n  2026-09-15T23:39:55Z  BBC Business     Why doomsday warnings are not the only threat to the AI juggernaut\n  2026-09-15T23:28:01Z  CNBC Markets     Why de-dollarization discussions are more talk, less action\n  2026-09-15T22:33:45Z  CNBC US Top News Iran war has cost on average $246 million per day in its first five mont\n  2026-09-15T22:17:47Z  CNBC US Top News Nvidia's Huang diverges with CEOs of Anthropic, OpenAI on AI safety at D\n  2026-09-15T13:33:00Z  Yahoo Finance    How a Costco partner's bankruptcy could benefit its biggest rival\n  2026-09-14T19:47:42Z  CNBC Markets     Counting the votes: Warsh faces a tough battle as the Fed girds for expe\n  2026-09-14T15:52:18Z  Yahoo Finance    Stocks could have a tough road ahead if the Fed hikes rates: Chart of th\n  2026-09-14T15:47:03Z  Yahoo Finance    YPF Lines Up Buyers for $24 Billion Vaca Muerta LNG Project\n  2026-09-14T15:40:49Z  Yahoo Finance    Caterpillar Falls 4% While Deere Edges Higher: Is the Data Center Power \n  2026-09-12T12:49:15Z  CNBC Markets     Inflation is outpacing wage growth again, squeezing Americans\u2019 paychecks\n\nwrote JSON   -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data\\news.json\nwrote bundle -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\news-data.js\n"
     }
   ],
   "outputs": [
@@ -51,8 +51,8 @@
     },
     {
       "path": "news-data.js",
-      "bytes": 6674,
-      "sha256": "24a05f57022ad03b02fa4979121f4a722adb1f3a5340c8e16682290daec43207"
+      "bytes": 6475,
+      "sha256": "692cd12a2fd404c499ce93a01783e23b3f253d18cf17368c0072eafe4a30884e"
     }
   ],
   "missing": [],
@@ -87,10 +87,10 @@
     },
     {
       "path": "fetch_news.py",
-      "bytes": 7485,
-      "sha256": "e17697b5897cb68aecb591de34910e10be7c4847c198e1fd5534faa59df08b17",
+      "bytes": 8926,
+      "sha256": "80cb2c6529e722843a2afb2d7494ebfcf751360266152948dd33466176973e40",
       "lang": "python",
-      "lines": 209
+      "lines": 243
     },
     {
       "path": "build_docs.py",
