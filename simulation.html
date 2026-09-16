@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation — stocks4cas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="brand">
+            <div class="mark">📈</div>
+            <div class="brand-name">stocks<span>4</span>cas</div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" data-key="home">Home</a>
+            <a href="analysis.html" data-key="analysis">Stock Analysis</a>
+            <a href="simulation.html" data-key="simulation">Simulation</a>
+            <a href="news.html" data-key="news">News <span class="nav-badge">Curated</span></a>
+            <a href="about.html" data-key="about">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Menu">☰</button>
+    </nav>
+
+    <main class="wrap">
+
+        <div class="page-head fade-in">
+            <div>
+                <div class="eyebrow">Backtest · 1 Mar → 1 Sep 2026</div>
+                <h1>The strategies, explained</h1>
+                <p class="sub">
+                    Six named quantitative strategies each started with <strong>$1,000,000</strong> of simulated
+                    capital. Below: how they work, how they traded, and how they finished.
+                </p>
+            </div>
+            <div class="segment" id="sim-currency">
+                <button data-c="usd" class="active">USD</button>
+                <button data-c="pct">%</button>
+            </div>
+        </div>
+
+        <!-- strategy cards -->
+        <div class="grid grid-3" id="strategy-cards"></div>
+
+        <!-- full comparison -->
+        <div class="grid grid-2 mt-16">
+            <div class="card">
+                <div class="card-head">
+                    <div>
+                        <h2>Profit &amp; Loss comparison</h2>
+                        <div class="hint">Net P&amp;L per strategy (green = profit, red = loss)</div>
+                    </div>
+                </div>
+                <div class="bar-list" id="sim-bars"></div>
+            </div>
+            <div class="card">
+                <div class="card-head">
+                    <div>
+                        <h2>Risk vs. return</h2>
+                        <div class="hint">Sharpe ratio and max drawdown for each strategy</div>
+                    </div>
+                </div>
+                <div class="table-scroll">
+                    <table id="risk-table">
+                        <thead>
+                            <tr><th>Strategy</th><th>Sharpe</th><th>Max DD</th><th>Return</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- trade log -->
+        <div class="card mt-16">
+            <div class="card-head" style="align-items:center;">
+                <div>
+                    <h2>Trade log</h2>
+                    <div class="hint">Every simulated order placed during the backtest</div>
+                </div>
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <select id="trade-filter"></select>
+                    <input type="text" id="trade-search" placeholder="Search ticker…" style="width:160px;">
+                </div>
+            </div>
+            <div class="table-scroll">
+                <table id="trade-table">
+                    <thead>
+                        <tr><th>Date</th><th>Strategy</th><th>Ticker</th><th>Side</th><th>Shares</th><th>Price</th><th>Value</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer" id="footer"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="data.js"></script>
+    <script src="common.js"></script>
+    <script src="simulation.js"></script>
+</body>
+</html>

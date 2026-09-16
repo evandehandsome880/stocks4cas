@@ -1,0 +1,70 @@
+{
+  "period": {
+    "start": "2026-03-01",
+    "end": "2026-09-01"
+  },
+  "initial_capital": 1000000.0,
+  "generated": "2026-09-16",
+  "strategies": [
+    {
+      "name": "Dollar-Cost Averaging",
+      "tagline": "Invest a fixed amount every week into a tech basket",
+      "return_pct": 3.76,
+      "pnl": 37564.21,
+      "sharpe": 0.78,
+      "max_drawdown_pct": -4.11,
+      "final_equity": 1037564.21,
+      "num_trades": 81
+    },
+    {
+      "name": "MA Crossover",
+      "tagline": "50/200-day golden cross on the S&P 500",
+      "return_pct": 2.98,
+      "pnl": 29769.67,
+      "sharpe": 1.1,
+      "max_drawdown_pct": -5.32,
+      "final_equity": 1029769.67,
+      "num_trades": 3
+    },
+    {
+      "name": "Buy & Hold",
+      "tagline": "Benchmark \u2014 hold SPY for the full period",
+      "return_pct": 2.92,
+      "pnl": 29224.03,
+      "sharpe": 0.59,
+      "max_drawdown_pct": -8.34,
+      "final_equity": 1029224.03,
+      "num_trades": 1
+    },
+    {
+      "name": "Mean Reversion",
+      "tagline": "Buy RSI<30 oversold names, sell at RSI>70",
+      "return_pct": 1.0,
+      "pnl": 9966.77,
+      "sharpe": 1.12,
+      "max_drawdown_pct": -0.83,
+      "final_equity": 1009966.77,
+      "num_trades": 28
+    },
+    {
+      "name": "Momentum",
+      "tagline": "Buy the 5 stocks with the strongest 20-day returns",
+      "return_pct": -2.25,
+      "pnl": -22547.13,
+      "sharpe": -0.39,
+      "max_drawdown_pct": -8.41,
+      "final_equity": 977452.87,
+      "num_trades": 55
+    },
+    {
+      "name": "Pairs Trading",
+      "tagline": "Market-neutral spread: long MSFT vs short AAPL",
+      "return_pct": -5.56,
+      "pnl": -55566.12,
+      "sharpe": -1.48,
+      "max_drawdown_pct": -6.15,
+      "final_equity": 944433.88,
+      "num_trades": 2
+    }
+  ]
+}

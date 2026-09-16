@@ -1,77 +1,109 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- This tells the browser basic info -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stocks4cas 🐱</title>
-    
-    <!-- Links to your CSS file -->
+    <title>stocks4cas — Stock Prediction Awareness</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
 </head>
-
 <body>
 
-    <!-- ===== NAVIGATION BAR ===== -->
     <nav class="navbar">
-        <div class="logo">
-            🐱
+        <div class="brand">
+            <div class="mark">📈</div>
+            <div class="brand-name">stocks<span>4</span>cas</div>
         </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="news.html">News</a>
-            <a href="about.html">About Us</a>
+            <a href="index.html" data-key="home">Home</a>
+            <a href="analysis.html" data-key="analysis">Stock Analysis</a>
+            <a href="simulation.html" data-key="simulation">Simulation</a>
+            <a href="news.html" data-key="news">News <span class="nav-badge">Curated</span></a>
+            <a href="about.html" data-key="about">About</a>
         </div>
+        <button class="menu-toggle" aria-label="Menu">☰</button>
     </nav>
 
-    <!-- ===== MAIN CONTENT ===== -->
-    <div class="main-container">
+    <main class="wrap">
 
-        <!-- LEFT SIDE: Stock Chart -->
-        <div class="left-panel">
-            <h2>Market Overview</h2>
-            
-            <!-- This box will hold our chart -->
-            <div class="chart-box">
-                <canvas id="stockChart"></canvas>
+        <!-- ===== HERO ===== -->
+        <section class="hero fade-in">
+            <div class="eyebrow">Quantitative finance · Educational project</div>
+            <h1>Can algorithms <span class="grad">beat the market?</span></h1>
+            <p>
+                We backtested six named quantitative trading strategies on a simulated market from
+                <strong>1 March → 1 September 2026</strong>. This dashboard shows how each one performed —
+                profits, losses, and the lessons in between.
+            </p>
+            <div class="hero-ctas">
+                <a class="btn btn-primary" href="simulation.html">Explore the simulation →</a>
+                <a class="btn btn-ghost" href="analysis.html">View stock analysis</a>
+            </div>
+        </section>
+
+        <!-- ===== TICKER STRIP ===== -->
+        <div id="ticker-strip" class="ticker-strip"></div>
+
+        <!-- ===== KPI ROW ===== -->
+        <div class="grid grid-4 mb-16" id="kpi-row"></div>
+
+        <!-- ===== MAIN GRID ===== -->
+        <div class="grid grid-side">
+            <div class="card">
+                <div class="card-head">
+                    <div>
+                        <h2>Strategy equity curves</h2>
+                        <div class="hint">Portfolio value per strategy, starting at $1,000,000</div>
+                    </div>
+                    <div class="segment" id="equity-range">
+                        <button data-range="all" class="active">Full</button>
+                        <button data-range="1m">1M</button>
+                        <button data-range="2w">2W</button>
+                    </div>
+                </div>
+                <div class="chart-box tall"><canvas id="equityChart"></canvas></div>
             </div>
 
-            <!-- Stock Stats Below Chart -->
-            <div class="stats-box">
-                <h3>Volatility Stats</h3>
-                <div class="stat-item">
-                    <span>MSFT</span>
-                    <span class="green">$380 +3%</span>
+            <div class="card">
+                <div class="card-head">
+                    <div>
+                        <h2>Profit &amp; Loss</h2>
+                        <div class="hint">Net P&amp;L by strategy, Mar–Sep 2026</div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span>INTC</span>
-                    <span class="green">$42 +2%</span>
-                </div>
-                <div class="stat-item">
-                    <span>RBLX</span>
-                    <span class="red">$38 -1%</span>
-                </div>
+                <div class="bar-list" id="pnl-bars"></div>
             </div>
         </div>
 
-        <!-- RIGHT SIDE: News Feed -->
-        <div class="right-panel">
-            <h2>Latest News</h2>
-            
-            <!-- News articles will appear here automatically -->
-            <div id="news-container">
-                <!-- JavaScript will fill this in -->
-                <p>Loading news...</p>
+        <!-- ===== WINNERS / LESSONS ===== -->
+        <div class="grid grid-2 mt-16">
+            <div class="card">
+                <div class="card-head">
+                    <div>
+                        <h2>Top performer</h2>
+                        <div class="hint" id="top-performer-hint"></div>
+                    </div>
+                </div>
+                <div id="top-performer"></div>
+            </div>
+            <div class="card">
+                <div class="card-head">
+                    <div>
+                        <h2>What this teaches us</h2>
+                        <div class="hint">Why awareness of prediction matters</div>
+                    </div>
+                </div>
+                <div id="lessons" class="muted" style="font-size:14px; display:flex; flex-direction:column; gap:10px;"></div>
             </div>
         </div>
 
-    </div>
+    </main>
 
-    <!-- Links to your JavaScript files -->
-    <!-- Chart.js is a free library for drawing charts -->
+    <footer class="footer" id="footer"></footer>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="data.js"></script>
+    <script src="common.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>

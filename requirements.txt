@@ -1,0 +1,4 @@
+# stocks4cas — simulation engine dependencies
+# Install into the project venv:  uv pip install -r requirements.txt
+numpy>=2.4
+pandas>=2.3

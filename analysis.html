@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analysis — stocks4cas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="brand">
+            <div class="mark">📈</div>
+            <div class="brand-name">stocks<span>4</span>cas</div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" data-key="home">Home</a>
+            <a href="analysis.html" data-key="analysis">Stock Analysis</a>
+            <a href="simulation.html" data-key="simulation">Simulation</a>
+            <a href="news.html" data-key="news">News <span class="nav-badge">Curated</span></a>
+            <a href="about.html" data-key="about">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Menu">☰</button>
+    </nav>
+
+    <main class="wrap">
+
+        <div class="page-head fade-in">
+            <div>
+                <div class="eyebrow">Stock Analysis</div>
+                <h1>Simulated market, dissected</h1>
+                <p class="sub">
+                    Price action, returns and volatility for a ten-ticker universe across the
+                    Mar–Sep 2026 simulation window. Select a ticker to zoom in.
+                </p>
+            </div>
+            <div class="segment" id="analysis-mode">
+                <button data-mode="price" class="active">Price</button>
+                <button data-mode="return">Return</button>
+            </div>
+        </div>
+
+        <!-- universe summary -->
+        <div class="grid grid-4 mb-16" id="universe-cards"></div>
+
+        <!-- detail chart -->
+        <div class="card">
+            <div class="card-head" style="align-items:center;">
+                <div>
+                    <h2 id="detail-title">Market Overview</h2>
+                    <div class="hint" id="detail-sub">Select a ticker card above, or view the full index</div>
+                </div>
+                <select id="ticker-select" style="min-width:180px;"></select>
+            </div>
+            <div class="chart-box tall"><canvas id="analysisChart"></canvas></div>
+        </div>
+
+        <!-- stats -->
+        <div class="grid grid-3 mt-16" id="analysis-stats"></div>
+
+    </main>
+
+    <footer class="footer" id="footer"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="data.js"></script>
+    <script src="common.js"></script>
+    <script src="analysis.js"></script>
+</body>
+</html>

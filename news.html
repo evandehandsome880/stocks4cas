@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market News — stocks4cas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="brand">
+            <div class="mark">📈</div>
+            <div class="brand-name">stocks<span>4</span>cas</div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" data-key="home">Home</a>
+            <a href="analysis.html" data-key="analysis">Stock Analysis</a>
+            <a href="simulation.html" data-key="simulation">Simulation</a>
+            <a href="news.html" data-key="news">News <span class="nav-badge">Curated</span></a>
+            <a href="about.html" data-key="about">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Menu">☰</button>
+    </nav>
+
+    <main class="wrap">
+
+        <div class="page-head fade-in">
+            <div>
+                <div class="eyebrow">Market News &amp; Insights</div>
+                <h1>What's moving markets</h1>
+                <p class="sub">
+                    Curated, illustrative headlines and editorial insights on the market environment —
+                    macro, equities, rates, commodities and more. This is <strong>not</strong> a live
+                    news feed, and nothing here is investment advice.
+                </p>
+            </div>
+            <div class="segment" id="news-sort">
+                <button data-sort="latest" class="active">Latest</button>
+                <button data-sort="positive">Positive</button>
+                <button data-sort="negative">Negative</button>
+            </div>
+        </div>
+
+        <div class="grid grid-side">
+            <div>
+                <div class="news-list" id="news-list"></div>
+            </div>
+            <div>
+                <div class="card" style="position:sticky; top:80px;">
+                    <div class="card-head">
+                        <div>
+                            <h2>Market insights</h2>
+                            <div class="hint">Short, sharp editorial analysis</div>
+                        </div>
+                    </div>
+                    <div id="insights" style="display:flex; flex-direction:column; gap:12px;"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer" id="footer"></footer>
+
+    <script src="common.js"></script>
+    <script src="news.js"></script>
+    <script src="news-page.js"></script>
+</body>
+</html>
