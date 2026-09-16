@@ -1,0 +1,215 @@
+{
+  "generated": "2026-09-16",
+  "generator": "build_docs.py",
+  "note": "Everything below is read from the repository at build time. Generated bundles (data.js, news-data.js) appear as hashes instead of being quoted back into themselves; docs.js records its own checksum in data/docs.log.",
+  "totalLines": 3484,
+  "tradeCount": 170,
+  "logs": [
+    {
+      "path": "data/run.log",
+      "bytes": 2229,
+      "sha256": "8343c86d81fafc8fe163ed7ec84b6eb348edd3cdddb256ed298416c985070aa8",
+      "text": "=== stocks4cas simulation complete ===\nperiod     : 2026-03-01 -> 2026-09-01  (132 trading days)\nseed       : 42 (numpy default_rng) \u2014 re-running reproduces these numbers\ncapital    : 1,000,000 per strategy\nuniverse   : 10 tickers \u2014 MSFT, NVDA, AAPL, AMZN, JPM, XOM, JNJ, KO, TSLA, SPY\ngenerated  : 2026-09-16\n\nstrategy summary (sorted by net P&L)\nstrategy                          pnl     ret%  sharpe   maxDD% trades\nDollar-Cost Averaging       37,564.21     3.76    0.78    -4.11     81\nMA Crossover                29,769.67     2.98    1.10    -5.32      3\nBuy & Hold                  29,224.03     2.92    0.59    -8.34      1\nMean Reversion               9,966.77     1.00    1.12    -0.83     28\nMomentum                   -22,547.13    -2.25   -0.39    -8.41     55\nPairs Trading              -55,566.12    -5.56   -1.48    -6.15      2\n\ntrade log per strategy\n  Dollar-Cost Averaging      81 trades  2026-03-02 -> 2026-08-31  [BUY 81]\n  MA Crossover                3 trades  2026-06-01 -> 2026-08-14  [BUY 2, SELL 1]\n  Buy & Hold                  1 trades  2026-03-02 -> 2026-03-02  [BUY 1]\n  Mean Reversion             28 trades  2026-03-20 -> 2026-08-25  [BUY 16, SELL 12]\n  Momentum                   55 trades  2026-03-31 -> 2026-08-25  [BUY 30, SELL 25]\n  Pairs Trading               2 trades  2026-07-14 -> 2026-07-14  [BUY 1, SHORT 1]\n\ntotal trades: 170\n\noutputs (sha256)\n  34006f4b3e636c95d421b654c488de10e8280611985e5bf700fd5d4897038829  data/strategies.json       1,849 bytes\n  4e7ab7bc98aaee171440cda0e40072eadf6e734f3b1928830cb89d25f8b0477c  data/equity.json          12,107 bytes\n  dca8dadd8374e45152ad81b829cf94c917a82ed1e7d1968950393905cde9953a  data/trades.json          25,735 bytes\n  d67f2ed969090e194306d73eed6b9cfb7e9b543ac0d194a189ac8a9e9ee02818  data/prices.json          13,337 bytes\n  4b2e18eae000d1f70e0481c6c43443e41c03762a43cde7605b0304f0474d421a  data/trades.csv           11,841 bytes\n  fa54caee8452ae1bb986b282bf2785793ad0cf4dbe0928c1c2e862112ecdc82f  data.js                   53,174 bytes\n\nwrote JSON   -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data\nwrote bundle -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data.js\nwrote log    -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data\\run.log\n"
+    },
+    {
+      "path": "data/news.log",
+      "bytes": 2256,
+      "sha256": "ee95e3357ebc1ee6950954691f427c4b77695d6d6471179db1502a755988e1bc",
+      "text": "=== stocks4cas news snapshot ===\nfetched    : 2026-09-16 03:22 UTC\nverify     : on (every link is checked before it is written)\n\n  BBC Business         43 items in feed, 8 kept\n  CNBC Markets         30 items in feed, 8 kept\n  CNBC US Top News     30 items in feed, 8 kept\n  Yahoo Finance        49 items in feed, 8 kept\n\nlink check\n  16/16 links resolve\n\nkept articles (newest first)\n  2026-09-16T01:56:24Z  CNBC US Top News BOJ expected to hike rates by 25 basis points to fresh three-decade high\n  2026-09-16T01:53:52Z  CNBC Markets     Indonesia's new finance minister faces an uphill battle on fiscal credib\n  2026-09-16T00:59:20Z  BBC Business     OpenAI boss says world 'right to be afraid' but 'should trust' AI firms\n  2026-09-15T23:52:04Z  CNBC US Top News Inside South Korea\u2019s university programs offering a direct route to Sams\n  2026-09-15T23:50:55Z  BBC Business     UK in talks about joining global defence bank led by Canada\n  2026-09-15T23:40:07Z  BBC Business     Do you feel guilty when calling in sick at work? This might be why...\n  2026-09-15T23:39:55Z  BBC Business     Why doomsday warnings are not the only threat to the AI juggernaut\n  2026-09-15T23:28:01Z  CNBC Markets     Why de-dollarization discussions are more talk, less action\n  2026-09-15T23:27:17Z  BBC Business     AI app ads promoting 'objectification of women' banned by watchdog\n  2026-09-15T23:19:38Z  BBC Business     The extreme engineering of aircraft windows\n  2026-09-15T23:14:26Z  BBC Business     We are all new job starters - here's how we got through the first few da\n  2026-09-15T23:14:08Z  BBC Business     Complaints to watchdog about water firms jump 84%\n  2026-09-15T22:33:45Z  CNBC US Top News Iran war has cost on average $246 million per day in its first five mont\n  2026-09-15T22:17:47Z  CNBC US Top News Nvidia's Huang diverges with CEOs of Anthropic, OpenAI on AI safety at D\n  2026-09-15T22:06:16Z  CNBC US Top News Nvidia CEO Huang attending Trump's state dinner for China's Xi: Source\n  2026-09-15T21:46:22Z  CNBC US Top News Trump says Kennedy Center will stay closed without renovation unless his\n\nwrote JSON   -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data\\news.json\nwrote bundle -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\news-data.js\n"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "data/strategies.json",
+      "bytes": 1849,
+      "sha256": "34006f4b3e636c95d421b654c488de10e8280611985e5bf700fd5d4897038829"
+    },
+    {
+      "path": "data/equity.json",
+      "bytes": 12107,
+      "sha256": "4e7ab7bc98aaee171440cda0e40072eadf6e734f3b1928830cb89d25f8b0477c"
+    },
+    {
+      "path": "data/trades.json",
+      "bytes": 25735,
+      "sha256": "dca8dadd8374e45152ad81b829cf94c917a82ed1e7d1968950393905cde9953a"
+    },
+    {
+      "path": "data/prices.json",
+      "bytes": 13337,
+      "sha256": "d67f2ed969090e194306d73eed6b9cfb7e9b543ac0d194a189ac8a9e9ee02818"
+    },
+    {
+      "path": "data/trades.csv",
+      "bytes": 11841,
+      "sha256": "4b2e18eae000d1f70e0481c6c43443e41c03762a43cde7605b0304f0474d421a"
+    },
+    {
+      "path": "data.js",
+      "bytes": 53174,
+      "sha256": "fa54caee8452ae1bb986b282bf2785793ad0cf4dbe0928c1c2e862112ecdc82f"
+    },
+    {
+      "path": "news-data.js",
+      "bytes": 6674,
+      "sha256": "24a05f57022ad03b02fa4979121f4a722adb1f3a5340c8e16682290daec43207"
+    }
+  ],
+  "missing": [],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3874,
+      "sha256": "3499211990fc076dbaa7b4537b97a63a6e92e81576dfe8c528324c71488788ce",
+      "lang": "markdown",
+      "lines": 76
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 144,
+      "sha256": "5196279d94a91a0cd459473b6d1db3b3c8f13193603a7f4033ad232d8df97dab",
+      "lang": "text",
+      "lines": 4
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 94,
+      "sha256": "cffaced1765a87a7de2ad9f4f72a9a1bddd30c4b709cef43281d3b57779b954f",
+      "lang": "text",
+      "lines": 9
+    },
+    {
+      "path": "simulate.py",
+      "bytes": 21001,
+      "sha256": "3c4ec0475962c1e67e831ce806878b5a75667c9eb33443eaf6e47ad8a1c65a2a",
+      "lang": "python",
+      "lines": 489
+    },
+    {
+      "path": "fetch_news.py",
+      "bytes": 7485,
+      "sha256": "e17697b5897cb68aecb591de34910e10be7c4847c198e1fd5534faa59df08b17",
+      "lang": "python",
+      "lines": 209
+    },
+    {
+      "path": "build_docs.py",
+      "bytes": 6062,
+      "sha256": "ac74810dfcb5bb107361ab652b8610975c34d03659cf91c8be35dab68fdcd8bc",
+      "lang": "python",
+      "lines": 199
+    },
+    {
+      "path": "build.py",
+      "bytes": 1268,
+      "sha256": "3e26b4c074a7357a5de792e87a916c88027e91dff82c5936d51a56bd9c39035f",
+      "lang": "python",
+      "lines": 44
+    },
+    {
+      "path": "theme.js",
+      "bytes": 949,
+      "sha256": "c1c4a944727756b44f777814efb4610ef082bc00a077ce4eb8e0a6e1660c1b67",
+      "lang": "javascript",
+      "lines": 21
+    },
+    {
+      "path": "common.js",
+      "bytes": 9198,
+      "sha256": "94611d181a3c4655302ef56ce24a3912d94d732357b35fe4af4a3c9862b269ba",
+      "lang": "javascript",
+      "lines": 218
+    },
+    {
+      "path": "documentary.js",
+      "bytes": 21845,
+      "sha256": "444db4385291a1fc0f5c69fd0140ff4a6f4fcd6ede71ce5394dc435f09c1eb67",
+      "lang": "javascript",
+      "lines": 376
+    },
+    {
+      "path": "script.js",
+      "bytes": 8765,
+      "sha256": "a369173b08bd82dc65aa4666c1727923330ba4ae4cf38e18d96fd57d6c4dd356",
+      "lang": "javascript",
+      "lines": 199
+    },
+    {
+      "path": "analysis.js",
+      "bytes": 7937,
+      "sha256": "2c40b1e36a1b6845de0863cd94751d7bb5a81c489b69f4d30947b87f8a33c462",
+      "lang": "javascript",
+      "lines": 187
+    },
+    {
+      "path": "simulation.js",
+      "bytes": 6754,
+      "sha256": "2a77977b800f4c947a7a38d50890f6993dbc6685b503efe208fd8608a881dde5",
+      "lang": "javascript",
+      "lines": 144
+    },
+    {
+      "path": "news.js",
+      "bytes": 4749,
+      "sha256": "fe3e82e0aba1feb841b2491b77f8e5a497514b17d6a29958d866dc2a8cbe99e0",
+      "lang": "javascript",
+      "lines": 98
+    },
+    {
+      "path": "news-page.js",
+      "bytes": 1876,
+      "sha256": "f41de64a1c25fa1d0122e34f5b7a6fdf89dec4a16a9e21530896ce8ef27ece7a",
+      "lang": "javascript",
+      "lines": 52
+    },
+    {
+      "path": "about.js",
+      "bytes": 1190,
+      "sha256": "691e0789ad78e115a61803a6f895ac152253ad2b6d1af14716ba17c00ec05a9b",
+      "lang": "javascript",
+      "lines": 33
+    },
+    {
+      "path": "style.css",
+      "bytes": 16261,
+      "sha256": "dcf5dd007e45adf55a0e01244b7a2ffa58ece7366266baddb61bfd8ec300094c",
+      "lang": "css",
+      "lines": 604
+    },
+    {
+      "path": "index.html",
+      "bytes": 5084,
+      "sha256": "7e6d62a7b8af2f5d06295f1595f7786698494484bbbf601474024eeb96f6b6cb",
+      "lang": "html",
+      "lines": 120
+    },
+    {
+      "path": "analysis.html",
+      "bytes": 3384,
+      "sha256": "3bbec4cb8afc2e6d5bc55cf29b98a20dda9dd1a23d06f6b2acf862ff7a5e9ca4",
+      "lang": "html",
+      "lines": 82
+    },
+    {
+      "path": "simulation.html",
+      "bytes": 4893,
+      "sha256": "b16efb5dab2beabcb5f35c574a4fd03b47d0ddc536689f45a64595802a3029f1",
+      "lang": "html",
+      "lines": 118
+    },
+    {
+      "path": "news.html",
+      "bytes": 3500,
+      "sha256": "32a1411380c39bfd16c27e9bbd37bf63b8daa76a8ec3392437eefc8565f2b1c4",
+      "lang": "html",
+      "lines": 83
+    },
+    {
+      "path": "about.html",
+      "bytes": 5374,
+      "sha256": "892a425ae078edd666894dd94109d722345cc85107b637fe54ce599996552655",
+      "lang": "html",
+      "lines": 119
+    }
+  ]
+}

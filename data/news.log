@@ -1,0 +1,32 @@
+=== stocks4cas news snapshot ===
+fetched    : 2026-09-16 03:22 UTC
+verify     : on (every link is checked before it is written)
+
+  BBC Business         43 items in feed, 8 kept
+  CNBC Markets         30 items in feed, 8 kept
+  CNBC US Top News     30 items in feed, 8 kept
+  Yahoo Finance        49 items in feed, 8 kept
+
+link check
+  16/16 links resolve
+
+kept articles (newest first)
+  2026-09-16T01:56:24Z  CNBC US Top News BOJ expected to hike rates by 25 basis points to fresh three-decade high
+  2026-09-16T01:53:52Z  CNBC Markets     Indonesia's new finance minister faces an uphill battle on fiscal credib
+  2026-09-16T00:59:20Z  BBC Business     OpenAI boss says world 'right to be afraid' but 'should trust' AI firms
+  2026-09-15T23:52:04Z  CNBC US Top News Inside South Korea’s university programs offering a direct route to Sams
+  2026-09-15T23:50:55Z  BBC Business     UK in talks about joining global defence bank led by Canada
+  2026-09-15T23:40:07Z  BBC Business     Do you feel guilty when calling in sick at work? This might be why...
+  2026-09-15T23:39:55Z  BBC Business     Why doomsday warnings are not the only threat to the AI juggernaut
+  2026-09-15T23:28:01Z  CNBC Markets     Why de-dollarization discussions are more talk, less action
+  2026-09-15T23:27:17Z  BBC Business     AI app ads promoting 'objectification of women' banned by watchdog
+  2026-09-15T23:19:38Z  BBC Business     The extreme engineering of aircraft windows
+  2026-09-15T23:14:26Z  BBC Business     We are all new job starters - here's how we got through the first few da
+  2026-09-15T23:14:08Z  BBC Business     Complaints to watchdog about water firms jump 84%
+  2026-09-15T22:33:45Z  CNBC US Top News Iran war has cost on average $246 million per day in its first five mont
+  2026-09-15T22:17:47Z  CNBC US Top News Nvidia's Huang diverges with CEOs of Anthropic, OpenAI on AI safety at D
+  2026-09-15T22:06:16Z  CNBC US Top News Nvidia CEO Huang attending Trump's state dinner for China's Xi: Source
+  2026-09-15T21:46:22Z  CNBC US Top News Trump says Kennedy Center will stay closed without renovation unless his
+
+wrote JSON   -> C:\Users\Jiang\Downloads\sfc\stocks4cas\data\news.json
+wrote bundle -> C:\Users\Jiang\Downloads\sfc\stocks4cas\news-data.js

@@ -1,194 +1,98 @@
 /* ============================================================
-   stocks4cas — market news & insights
-   Curated, illustrative finance content — NOT a live news feed.
-   Written to support the project's "be sceptical of prediction"
-   message; headlines are examples, not real-time reporting.
+   stocks4cas — news renderers
+
+   The article list is a snapshot pulled from public RSS feeds by
+   fetch_news.py and loaded from the generated news-data.js bundle.
+   Headlines, summaries and dates are quoted verbatim from the
+   publishers, and every card links to the original article.
+
+   The insights at the bottom are our own commentary — clearly not news
+   reporting, and not advice.
    ============================================================ */
 
 const S4C_NEWS = (() => {
-    // ---- Curated feed (illustrative, finance-related headlines) ----
-    const CURATED = [
-        {
-            title: "Fed officials signal openness to rate cuts as inflation cools toward target",
-            source: "Reuters",
-            emoji: "🏛️",
-            tag: "Macro",
-            sentiment: "positive",
-            summary: "Minutes from the latest FOMC meeting showed policymakers weighing the pace of easing, lifting risk appetite across equities while the dollar softened.",
-            url: "https://www.reuters.com/markets/",
-        },
-        {
-            title: "AI chip demand keeps semiconductor names in the spotlight as capex stays elevated",
-            source: "CNBC",
-            emoji: "💻",
-            tag: "Technology",
-            sentiment: "positive",
-            summary: "Cloud providers continue to guide for record data-centre spending, keeping investor attention firmly on AI infrastructure and memory supply chains.",
-            url: "https://www.cnbc.com/technology/",
-        },
-        {
-            title: "Oil steadies as OPEC+ weighs output policy and demand outlook softens",
-            source: "Bloomberg",
-            emoji: "🛢️",
-            tag: "Energy",
-            sentiment: "neutral",
-            summary: "Crude futures traded in a tight range as traders balanced supply discipline against softer refining margins and an uncertain demand picture in Asia.",
-            url: "https://www.bloomberg.com/energy",
-        },
-        {
-            title: "Retail earnings paint a mixed consumer picture as spending shifts to essentials",
-            source: "Financial Times",
-            emoji: "🛒",
-            tag: "Consumer",
-            sentiment: "negative",
-            summary: "Discretionary retailers guided cautiously for the coming quarter, while discount and staple chains reported resilient foot traffic.",
-            url: "https://www.ft.com/markets",
-        },
-        {
-            title: "Treasury yields ease after weak labour-market data bolsters rate-cut bets",
-            source: "Reuters",
-            emoji: "📉",
-            tag: "Bonds",
-            sentiment: "positive",
-            summary: "A softer-than-expected payrolls print sent the 10-year yield lower and boosted rate-sensitive sectors including tech and real estate.",
-            url: "https://www.reuters.com/markets/rates-bonds/",
-        },
-        {
-            title: "Gold edges to a record as investors hedge against policy uncertainty",
-            source: "CNBC",
-            emoji: "🥇",
-            tag: "Commodities",
-            sentiment: "positive",
-            summary: "Bullion extended its gains as real yields declined and central-bank buying continued, reinforcing gold's role as a portfolio hedge.",
-            url: "https://www.cnbc.com/commodities/",
-        },
-        {
-            title: "Bank stocks rally as analysts upgrade the sector on improved net-interest outlook",
-            source: "Bloomberg",
-            emoji: "🏦",
-            tag: "Financials",
-            sentiment: "positive",
-            summary: "Major lenders advanced after sell-side research pointed to stabilising deposit costs and resilient credit quality heading into year-end.",
-            url: "https://www.bloomberg.com/markets",
-        },
-        {
-            title: "EV makers face margin pressure as price competition intensifies globally",
-            source: "Financial Times",
-            emoji: "🔋",
-            tag: "Autos",
-            sentiment: "negative",
-            summary: "Automakers are trimming prices to defend market share, squeezing unit economics even as battery costs decline.",
-            url: "https://www.ft.com/companies",
-        },
-        {
-            title: "Small-cap stocks outperform as breadth improves across the market",
-            source: "Reuters",
-            emoji: "📊",
-            tag: "Equities",
-            sentiment: "positive",
-            summary: "The Russell 2000 outpaced large caps for a fourth straight session, a sign investors see broadening economic strength.",
-            url: "https://www.reuters.com/markets/us/",
-        },
-        {
-            title: "Healthcare M&A picks up as pharma seeks late-stage pipelines",
-            source: "CNBC",
-            emoji: "💊",
-            tag: "Healthcare",
-            sentiment: "neutral",
-            summary: "Deal activity accelerated with several mid-size acquisitions announced, as large drugmakers look to refill pipelines ahead of patent cliffs.",
-            url: "https://www.cnbc.com/healthcare/",
-        },
-        {
-            title: "Bitcoin holds gains as spot-ETF inflows continue at a steady pace",
-            source: "CoinDesk",
-            emoji: "₿",
-            tag: "Crypto",
-            sentiment: "positive",
-            summary: "Digital assets consolidated near multi-month highs, supported by persistent inflows into spot products and improving institutional adoption.",
-            url: "https://www.coindesk.com/markets/",
-        },
-        {
-            title: "Strong dollar fades as traders position for a more dovish Fed path",
-            source: "Bloomberg",
-            emoji: "💱",
-            tag: "FX",
-            sentiment: "neutral",
-            summary: "The greenback slipped against major peers, boosting emerging-market assets and dollar-denominated commodities.",
-            url: "https://www.bloomberg.com/markets/currencies",
-        },
-    ];
+    /* ---------------- our commentary (editorial, not reporting) ---------------- */
 
-    // ---- Market insights (editorial analysis) ----
     const INSIGHTS = [
         {
-            title: "The Fed pivot trade",
-            sentiment: "positive",
-            body: "With inflation trending toward target, bond markets are pricing a full easing cycle. Historically, the 6–12 months after the first cut favour duration (bonds) and quality growth equities. Momentum strategies tend to lag during sharp policy pivots, while dollar-cost averaging smooths entry risk.",
+            title: "The rate story dominates everything",
+            body: "When long-dated government yields move, they re-price every other asset at once. Note how a single macro variable can swamp six very different trading strategies — that is a lesson about exposure, not about prediction.",
         },
         {
-            title: "AI capex is still the market's engine",
-            sentiment: "positive",
-            body: "Hyper-scaler spending remains the single largest theme in equities. Semiconductor and networking names carry elevated volatility, so position sizing matters. Mean-reversion approaches on overbought AI names have historically captured short-term pullbacks.",
+            title: "Concentration cuts both ways",
+            body: "A handful of very large companies now drive a large share of index moves. That helps trend-following strategies in a strong market and punishes them in a reversal, because the same few names drive both directions.",
         },
         {
-            title: "Watch the consumer",
-            sentiment: "negative",
-            body: "Retail guidance is bifurcating: essentials hold up while discretionary wobbles. Credit-card delinquency data bears watching as a leading indicator for a broader slowdown. Defensive sectors offer lower drawdown if the consumer cracks.",
+            title: "Headlines are not signals",
+            body: "Every article on this page is real reporting about real events. None of it tells you what happens next. Trading on the news usually means trading on what other people have already read, priced in, and acted on.",
         },
         {
-            title: "Oil's supply floor",
-            sentiment: "neutral",
-            body: "OPEC+ has repeatedly defended prices with output cuts. Energy equities trade on capital discipline and buybacks more than the spot price, offering a buffer — but a demand shock remains the key downside risk.",
+            title: "Diversification is a timing-free decision",
+            body: "The simulation's dollar-cost averaging strategy made no attempt to time the market and still finished ahead. That is not proof it works forever — it is evidence that a boring rule beats a confident guess more often than people expect.",
         },
         {
-            title: "Breadth is broadening",
-            sentiment: "positive",
-            body: "Small caps and equal-weight indices outperforming cap-weighted benchmarks signals healthy participation. Rotations like this historically reduce concentration risk and support active strategies such as momentum and pairs trading.",
-        },
-        {
-            title: "Gold as a hedge, not a trade",
-            sentiment: "neutral",
-            body: "Record gold prices reflect real-yield compression and central-bank demand. Allocations should be viewed as portfolio insurance rather than a momentum chase — sharp reversals are common after parabolic moves.",
+            title: "Costs and slippage are missing",
+            body: "Our backtest ignores commissions, spreads and the market impact of real orders. A strategy with 81 small trades (like dollar-cost averaging here) would pay those costs more often. Add them and the ranking can change.",
         },
     ];
 
-    const SENTIMENT_LABEL = { positive: "Positive", negative: "Negative", neutral: "Neutral" };
-    const SENTIMENT_EMOJI = { positive: "▲", negative: "▼", neutral: "•" };
-    const SENTIMENT_CLASS = { positive: "up", negative: "down", neutral: "muted" };
+    /* ---------------- helpers ---------------- */
 
-    const renderNewsList = (container, articles) => {
-        container.innerHTML = "";
-        articles.forEach((a) => {
-            const card = document.createElement("div");
-            card.className = "news-card fade-in";
-            const cls = SENTIMENT_CLASS[a.sentiment] || "muted";
-            card.innerHTML = `
-                <div class="news-thumb">${a.emoji || "📰"}</div>
-                <div class="news-body">
-                    <h4>${a.title}</h4>
-                    <p>${a.summary}</p>
-                    <div class="news-meta">
-                        <span class="source">${a.source}</span>
-                        <span>${a.tag || "Markets"}</span>
-                        <span class="${cls}">${SENTIMENT_EMOJI[a.sentiment] || ""} ${SENTIMENT_LABEL[a.sentiment] || "Neutral"}</span>
-                    </div>
-                </div>`;
-            card.onclick = () => window.open(a.url || "#", "_blank");
-            container.appendChild(card);
-        });
+    const hostOf = (url) => {
+        try {
+            return new URL(url).hostname.replace(/^www\./, "");
+        } catch (e) {
+            return "";
+        }
+    };
+
+    const articleCard = (a) => `
+        <article class="news-card">
+            <div class="news-body">
+                <h4>
+                    <a href="${S4C.esc(a.url)}" target="_blank" rel="noopener noreferrer">${S4C.esc(a.title)}</a>
+                </h4>
+                ${a.summary ? `<p>${S4C.esc(a.summary)}</p>` : ""}
+                <div class="news-meta">
+                    <span class="source">${S4C.esc(a.source)}</span>
+                    <span class="when">${S4C.fmtDateTime(a.published)}</span>
+                    <span>${S4C.esc(hostOf(a.url))}</span>
+                </div>
+            </div>
+        </article>`;
+
+    /* ---------------- renderers ---------------- */
+
+    const renderArticles = (container, articles) => {
+        if (!container) return;
+        if (!articles || !articles.length) {
+            container.innerHTML = `<div class="note">No articles to show.</div>`;
+            return;
+        }
+        container.innerHTML = articles.map(articleCard).join("");
+    };
+
+    // The snapshot's own provenance: when it was pulled, and from where.
+    const renderNote = (container, snapshot) => {
+        if (!container || !snapshot) return;
+        const feeds = (snapshot.feeds || []).map((f) => S4C.esc(f.source)).join(", ");
+        container.innerHTML = `
+            <strong>Snapshot, not a live feed.</strong>
+            Headlines, summaries and dates are quoted verbatim from the publishers
+            (${feeds}) and every card links to the original article. The list was
+            pulled on ${S4C.fmtDateTime(snapshot.generated)} and is only as fresh as
+            that moment — re-run <span class="mono">python fetch_news.py</span> to refresh it.
+            Nothing here is our own reporting, and none of it is investment advice.`;
     };
 
     const renderInsights = (container) => {
-        container.innerHTML = "";
-        INSIGHTS.forEach((ins) => {
-            const div = document.createElement("div");
-            div.className = "insight-card fade-in " + (ins.sentiment || "");
-            div.innerHTML = `
-                <h4>${SENTIMENT_EMOJI[ins.sentiment]} ${ins.title}</h4>
-                <p>${ins.body}</p>`;
-            container.appendChild(div);
-        });
+        if (!container) return;
+        container.innerHTML = INSIGHTS.map((ins) => `
+            <div class="insight-card">
+                <h4>${S4C.esc(ins.title)}</h4>
+                <p>${S4C.esc(ins.body)}</p>
+            </div>`).join("");
     };
 
-    return { CURATED, INSIGHTS, renderNewsList, renderInsights, SENTIMENT_LABEL };
+    return { INSIGHTS, renderArticles, renderNote, renderInsights };
 })();

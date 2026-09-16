@@ -57,23 +57,33 @@ document.addEventListener("DOMContentLoaded", () => {
         return { labels, values };
     }
 
+    let lastSeries = null;
+    let themeHookReady = false;
+
+    function returnOptions() {
+        const base = S4C.chartBase();
+        return {
+            ...base,
+            scales: {
+                x: { ...base.scales.x },
+                y: {
+                    ticks: { color: base.scales.y.ticks.color, callback: (v) => v + "%" },
+                    grid: { color: base.scales.y.grid.color },
+                    border: { color: base.scales.y.border.color },
+                },
+            },
+        };
+    }
+
     function drawChart(labels, values, ticker, mode) {
         const canvas = document.getElementById("analysisChart");
-        const color = ticker
-            ? S4C.chartColor(tickers.indexOf(ticker))
-            : S4C.COLORS[0];
-        const ctx = canvas.getContext("2d");
-        if (chart) chart.destroy();
-        const options = mode === "price"
-            ? S4C.moneyScale()
-            : {
-                  ...S4C.chartBase,
-                  scales: {
-                      x: { ...S4C.chartBase.scales.x },
-                      y: { ticks: { color: "#5b687d", callback: (v) => v + "%" }, grid: { color: "#1f2a3d" } },
-                  },
-              };
-        chart = new Chart(ctx, {
+        if (!canvas || typeof Chart === "undefined") return;
+        lastSeries = { labels, values, ticker, mode };
+
+        const color = ticker ? S4C.chartColor(tickers.indexOf(ticker)) : S4C.COLORS[0];
+        if (chart) { chart.destroy(); chart = null; }
+
+        chart = new Chart(canvas.getContext("2d"), {
             type: "line",
             data: {
                 labels,
@@ -81,15 +91,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     label: ticker || "Market",
                     data: values,
                     borderColor: color,
-                    backgroundColor: S4C.hexToRgba ? S4C.hexToRgba(color, 0.12) : "rgba(91,140,255,0.1)",
+                    backgroundColor: S4C.hexToRgba(color, 0.08),
                     fill: true,
                     tension: 0.3,
-                    borderWidth: 2.2,
+                    borderWidth: 2,
                     pointRadius: 0,
                 }],
             },
-            options,
+            options: mode === "price" ? S4C.moneyScale() : returnOptions(),
         });
+
+        // replot when the theme (and therefore the chart palette) changes
+        if (!themeHookReady) {
+            themeHookReady = true;
+            S4C.onThemeChange(() => {
+                if (lastSeries) drawChart(lastSeries.labels, lastSeries.values, lastSeries.ticker, lastSeries.mode);
+            });
+        }
     }
 
     function renderUniverseCards(universe, rows) {
@@ -103,8 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const cls = ret >= 0 ? "up" : "down";
             const active = selected === u.ticker;
             return `
-                <div class="kpi fade-in" data-ticker="${u.ticker}"
-                     style="cursor:pointer; ${active ? "box-shadow:0 0 0 2px var(--accent);" : ""}">
+                <div class="kpi" data-ticker="${u.ticker}"
+                     style="cursor:pointer; ${active ? "outline:2px solid var(--accent); outline-offset:-2px;" : ""}">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <div class="label" style="font-size:13px;">${u.ticker}</div>
                         <span class="pill ${cls}">${S4C.fmtPct(ret)}</span>

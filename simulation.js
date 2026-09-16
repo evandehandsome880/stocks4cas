@@ -38,10 +38,10 @@ function renderStrategyCards(strategies, currency = "usd") {
             ? `${S4C.fmtUSD(s.pnl)} · ${S4C.fmtPct(s.return_pct)}`
             : `${S4C.fmtPct(s.return_pct)} · ${S4C.fmtUSD(s.pnl)}`;
         return `
-            <div class="card fade-in">
+            <div class="card">
                 <div class="card-head">
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <div style="width:34px; height:34px; border-radius:9px; display:grid; place-items:center; font-weight:800; font-size:15px; color:#fff; background:${S4C.chartColor(i)};">${i + 1}</div>
+                        <div style="width:28px; height:28px; display:grid; place-items:center; font-family:var(--mono); font-weight:700; font-size:12px; color:#fff; background:${S4C.chartColor(i)};">${i + 1}</div>
                         <h2>${s.name}</h2>
                     </div>
                     <span class="pill ${cls}">${isProfit ? "▲ Profit" : "▼ Loss"}</span>
@@ -73,7 +73,7 @@ function renderBars(strategies, currency = "usd") {
         const cls = isProfit ? "profit" : "loss";
         const valText = currency === "usd" ? S4C.fmtUSD(s.pnl) : S4C.fmtPct(s.return_pct);
         return `
-            <div class="bar-row fade-in">
+            <div class="bar-row">
                 <div class="bar-name">${s.name}<span class="bar-tag">${S4C.fmtPct(s.return_pct)} return</span></div>
                 <div class="bar-track">
                     <div class="zero-line"></div>

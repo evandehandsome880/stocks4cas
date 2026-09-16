@@ -52,22 +52,22 @@ function renderKPIs(strategies) {
     const worst = [...strategies].sort((a, b) => a.pnl - b.pnl)[0];
 
     el.innerHTML = `
-        <div class="kpi fade-in">
+        <div class="kpi">
             <div class="label">Total strategies</div>
             <div class="value">${strategies.length}</div>
             <div class="delta muted">${wins.length} profitable · ${losses.length} losing</div>
         </div>
-        <div class="kpi fade-in">
+        <div class="kpi">
             <div class="label">Net combined P&amp;L</div>
             <div class="value ${totalPnl >= 0 ? "up" : "down"}">${S4C.fmtUSD(totalPnl)}</div>
             <div class="delta muted">across all strategies</div>
         </div>
-        <div class="kpi fade-in">
+        <div class="kpi">
             <div class="label">Best strategy</div>
             <div class="value up">${best ? S4C.fmtUSD(best.pnl) : "—"}</div>
             <div class="delta up">${best ? best.name : ""}</div>
         </div>
-        <div class="kpi fade-in">
+        <div class="kpi">
             <div class="label">Worst strategy</div>
             <div class="value down">${worst ? S4C.fmtUSD(worst.pnl) : "—"}</div>
             <div class="delta down">${worst ? worst.name : ""}</div>
@@ -76,47 +76,57 @@ function renderKPIs(strategies) {
 
 /* ---------------- equity chart ---------------- */
 let equityChart = null;
+const equityState = { dates: [], equity: null, from: 0 };
+
+function equityDatasets(equity, from) {
+    return Object.keys(equity.strategies).map((name, i) => ({
+        label: name,
+        data: equity.strategies[name].slice(from),
+        borderColor: S4C.chartColor(i),
+        backgroundColor: "transparent",
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 0,
+    }));
+}
+
+function drawEquityChart() {
+    const canvas = document.getElementById("equityChart");
+    const { equity, dates, from } = equityState;
+    if (!canvas || !equity || typeof Chart === "undefined") return;
+    if (equityChart) { equityChart.destroy(); equityChart = null; }
+    equityChart = new Chart(canvas.getContext("2d"), {
+        type: "line",
+        data: { labels: dates.slice(from), datasets: equityDatasets(equity, from) },
+        options: S4C.moneyScale(),
+    });
+}
 
 function renderEquityChart(equity) {
     const canvas = document.getElementById("equityChart");
     if (!canvas || !equity || typeof Chart === "undefined") return;
 
-    const dates = equity.dates;
-    const names = Object.keys(equity.strategies);
+    equityState.dates = equity.dates;
+    equityState.equity = equity;
+    equityState.from = 0;
+    drawEquityChart();
 
-    const makeDatasets = (fromIdx) => {
-        return names.map((name, i) => ({
-            label: name,
-            data: equity.strategies[name].slice(fromIdx),
-            borderColor: S4C.chartColor(i),
-            backgroundColor: "transparent",
-            borderWidth: 2,
-            tension: 0.3,
-            pointRadius: 0,
-        }));
-    };
+    const range = document.getElementById("equity-range");
+    if (range) {
+        range.addEventListener("click", (e) => {
+            const btn = e.target.closest("button");
+            if (!btn) return;
+            document.querySelectorAll("#equity-range button").forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            const n = equityState.dates.length;
+            const r = btn.dataset.range;
+            equityState.from = r === "1m" ? Math.max(0, n - 21) : r === "2w" ? Math.max(0, n - 10) : 0;
+            drawEquityChart();
+        });
+    }
 
-    const ctx = canvas.getContext("2d");
-    equityChart = new Chart(ctx, {
-        type: "line",
-        data: { labels: dates, datasets: makeDatasets(0) },
-        options: S4C.moneyScale(),
-    });
-
-    document.getElementById("equity-range").addEventListener("click", (e) => {
-        const btn = e.target.closest("button");
-        if (!btn) return;
-        document.querySelectorAll("#equity-range button").forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        const range = btn.dataset.range;
-        const n = dates.length;
-        let from = 0;
-        if (range === "1m") from = Math.max(0, n - 21);
-        if (range === "2w") from = Math.max(0, n - 10);
-        equityChart.data.labels = dates.slice(from);
-        equityChart.data.datasets = makeDatasets(from);
-        equityChart.update();
-    });
+    // chart colours come from the active theme, so redraw when it changes
+    S4C.onThemeChange(drawEquityChart);
 }
 
 /* ---------------- P&L bars ---------------- */
@@ -133,7 +143,7 @@ function renderPnlBars(strategies) {
         const width = (pct / 2).toFixed(2);
         const cls = isProfit ? "profit" : "loss";
         return `
-            <div class="bar-row fade-in">
+            <div class="bar-row">
                 <div class="bar-name">${s.name}
                     <span class="bar-tag">${s.tagline}</span>
                 </div>
@@ -159,7 +169,7 @@ function renderTopPerformer(strategies) {
 
     el.innerHTML = `
         <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-            <div style="font-size:44px;">🏆</div>
+            <div style="font-size:44px;"></div>
             <div>
                 <div style="font-size:20px; font-weight:800;">${best.name}</div>
                 <div class="muted" style="font-size:13px; margin-top:4px;">${best.tagline}</div>
@@ -180,10 +190,10 @@ function renderLessons(strategies) {
     const best = sorted[0];
     const worst = sorted[sorted.length - 1];
     const lessons = [
-        `📊 <strong>${best ? best.name : "—"}</strong> led the field at <strong class="up">${best ? S4C.fmtPct(best.return_pct) : ""}</strong>, while <strong>${worst ? worst.name : "—"}</strong> fell <strong class="down">${worst ? S4C.fmtPct(worst.return_pct) : ""}</strong> — the same market, very different outcomes.`,
-        "⚖️ Strategies with steady, rule-based entries (like dollar-cost averaging) often smooth volatility, while aggressive timing can amplify drawdowns.",
-        "🔮 No strategy predicted the future. These results come from a <em>simulated</em> market — real predictions carry far more uncertainty and risk.",
-        "🧠 The goal of this project is awareness: understand what quant strategies claim to do before trusting any “prediction” you see online.",
+        ` <strong>${best ? best.name : "—"}</strong> led the field at <strong class="up">${best ? S4C.fmtPct(best.return_pct) : ""}</strong>, while <strong>${worst ? worst.name : "—"}</strong> fell <strong class="down">${worst ? S4C.fmtPct(worst.return_pct) : ""}</strong> — the same market, very different outcomes.`,
+        " Strategies with steady, rule-based entries (like dollar-cost averaging) often smooth volatility, while aggressive timing can amplify drawdowns.",
+        " No strategy predicted the future. These results come from a <em>simulated</em> market — real predictions carry far more uncertainty and risk.",
+        " The goal of this project is awareness: understand what quant strategies claim to do before trusting any “prediction” you see online.",
     ];
     el.innerHTML = lessons.map((l) => `<div>${l}</div>`).join("");
 }

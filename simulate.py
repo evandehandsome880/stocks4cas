@@ -6,6 +6,8 @@ from 2026-03-01 to 2026-09-01. Generates the JSON data that powers the site
 Deterministic (seeded) so results are stable and reproducible.
 """
 
+import csv
+import hashlib
 import json
 import math
 import os
@@ -316,6 +318,16 @@ def metrics(equity):
 
 
 # ------------------------------------------------------------- site bundle ---
+def sha256(path):
+    """SHA-256 of a file, so the documentary can show that the logs it
+    displays really do correspond to the committed data."""
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
 def write_site_bundle(root_dir, summary, equity_payload, all_trades, prices_payload):
     """Write `data.js` — the bundled JS data source every page loads with
     <script src="data.js">. Bundling keeps the site working straight from the
@@ -402,17 +414,75 @@ def main():
     with open(os.path.join(out_dir, "prices.json"), "w", encoding="utf-8") as f:
         json.dump(prices_payload, f)
 
+    # The trade log as CSV: easy to open in a spreadsheet and quoted in the
+    # documentary's "logs" chapter.
+    csv_path = os.path.join(out_dir, "trades.csv")
+    with open(csv_path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["strategy", "date", "ticker", "side", "shares", "price", "value"])
+        for tr in all_trades:
+            writer.writerow([tr["strategy"], tr["date"], tr["ticker"], tr["side"],
+                             tr["shares"], tr["price"], tr["value"]])
+
     bundle_path = write_site_bundle(root_dir, summary, equity_payload, all_trades, prices_payload)
 
-    print("=== stocks4cas simulation complete ===")
-    print(f"period: {START} -> {END}  |  {len(dates)} trading days")
-    print(f"{'strategy':24} {'pnl':>12} {'ret%':>8} {'sharpe':>7} {'maxDD%':>8} {'trades':>6}")
+    # ------------------------------------------------------------- run log ----
+    # The report printed below is also written to data/run.log, so the site can
+    # show the simulation's own log rather than a screenshot of it.
+    report = []
+
+    def say(line=""):
+        report.append(line)
+        print(line)
+
+    outputs = [
+        ("data/strategies.json", os.path.join(out_dir, "strategies.json")),
+        ("data/equity.json", os.path.join(out_dir, "equity.json")),
+        ("data/trades.json", os.path.join(out_dir, "trades.json")),
+        ("data/prices.json", os.path.join(out_dir, "prices.json")),
+        ("data/trades.csv", csv_path),
+        ("data.js", bundle_path),
+    ]
+
+    say("=== stocks4cas simulation complete ===")
+    say(f"period     : {START} -> {END}  ({len(dates)} trading days)")
+    say(f"seed       : {SEED} (numpy default_rng) — re-running reproduces these numbers")
+    say(f"capital    : {INITIAL_CAPITAL:,.0f} per strategy")
+    say(f"universe   : {len(UNIVERSE)} tickers — {', '.join(s['ticker'] for s in UNIVERSE)}")
+    say(f"generated  : {summary['generated']}")
+    say("")
+    say("strategy summary (sorted by net P&L)")
+    say(f"{'strategy':24} {'pnl':>12} {'ret%':>8} {'sharpe':>7} {'maxDD%':>8} {'trades':>6}")
     for r in sorted(results, key=lambda r: -r["pnl"]):
-        print(f"{r['name']:24} {r['pnl']:>12,.2f} {r['return_pct']:>8.2f} "
-              f"{r['sharpe']:>7.2f} {r['max_drawdown_pct']:>8.2f} {r['num_trades']:>6}")
-    print()
-    print(f"wrote JSON  -> {out_dir}")
-    print(f"wrote bundle -> {bundle_path}")
+        say(f"{r['name']:24} {r['pnl']:>12,.2f} {r['return_pct']:>8.2f} "
+            f"{r['sharpe']:>7.2f} {r['max_drawdown_pct']:>8.2f} {r['num_trades']:>6}")
+    say("")
+    say("trade log per strategy")
+    for r in sorted(results, key=lambda r: -r["pnl"]):
+        rows = [t for t in all_trades if t["strategy"] == r["name"]]
+        if not rows:
+            say(f"  {r['name']:24}    0 trades")
+            continue
+        sides = {}
+        for t in rows:
+            sides[t["side"]] = sides.get(t["side"], 0) + 1
+        side_txt = ", ".join(f"{k} {v}" for k, v in sorted(sides.items()))
+        say(f"  {r['name']:24} {len(rows):>4} trades  {rows[0]['date'][:10]} -> "
+            f"{rows[-1]['date'][:10]}  [{side_txt}]")
+    say("")
+    say(f"total trades: {len(all_trades)}")
+    say("")
+    say("outputs (sha256)")
+    for label, path in outputs:
+        say(f"  {sha256(path)}  {label:22} {os.path.getsize(path):>9,} bytes")
+    say("")
+    say(f"wrote JSON   -> {out_dir}")
+    say(f"wrote bundle -> {bundle_path}")
+    log_path = os.path.join(out_dir, "run.log")
+    say(f"wrote log    -> {log_path}")
+
+    with open(log_path, "w", encoding="utf-8", newline="\n") as f:
+        f.write("\n".join(report) + "\n")
 
 
 if __name__ == "__main__":
