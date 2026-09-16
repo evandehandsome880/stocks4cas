@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ? (universe.find((u) => u.ticker === selected)?.name || selected) + " (" + selected + ")"
             : "Market Overview (equal-weight average)";
         const sub = mode === "price"
-            ? "Simulated closing price, Mar–Sep 2026"
+            ? "Simulated closing price, March to September 2026"
             : "Cumulative return (%) since 1 March 2026";
         document.getElementById("detail-title").textContent = title;
         document.getElementById("detail-sub").textContent = sub;
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setupSelect(universe) {
         const sel = document.getElementById("ticker-select");
-        sel.innerHTML = `<option value="">— Full market —</option>` +
+        sel.innerHTML = `<option value="">Full market, all ten tickers</option>` +
             universe.map((u) => `<option value="${u.ticker}">${u.ticker} · ${u.name}</option>`).join("");
         sel.addEventListener("change", () => {
             selected = sel.value || null;
@@ -182,6 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
         render();
     });
 
-    // kick off
-    render();
+    // kick off, once the typeface is in place
+    S4C.whenFontsReady(render);
 });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock analysis | stocks4cas</title>
+    <title>Call the market | stocks4cas</title>
     <link rel="preload" href="fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
@@ -36,36 +36,53 @@
 
         <div class="page-head">
             <div>
-                <div class="eyebrow">Stock Analysis</div>
-                <h1>Simulated market, dissected</h1>
+                <div class="eyebrow">Play</div>
+                <h1>Call the market</h1>
                 <p class="sub">
-                    Price action, returns and volatility for a ten-ticker universe across the
-                    March to September 2026 simulation window. Select a ticker to zoom in.
+                    Five rounds. Each one shows twenty daily closes, and you say whether the next close
+                    is higher or lower. Then the score is compared with a coin.
                 </p>
             </div>
-            <div class="segment" id="analysis-mode">
-                <button data-mode="price" class="active">Price</button>
-                <button data-mode="return">Return</button>
-            </div>
         </div>
 
-        <!-- universe summary -->
-        <div class="grid grid-4 mb-16" id="universe-cards"></div>
-
-        <!-- detail chart -->
-        <div class="card">
-            <div class="card-head" style="align-items:center;">
-                <div>
-                    <h2 id="detail-title">Market Overview</h2>
-                    <div class="hint" id="detail-sub">Select a ticker card above, or view the full index</div>
+        <div class="game-grid">
+            <div class="card">
+                <div class="card-head">
+                    <div>
+                        <h2 id="game-round">Round 1 of 5</h2>
+                        <div class="hint" id="game-hint">Twenty daily closes. The next one is hidden.</div>
+                    </div>
+                    <div class="pips" id="game-pips"></div>
                 </div>
-                <select id="ticker-select" style="min-width:180px;"></select>
+                <div class="spark" id="game-chart"></div>
+                <div class="game-actions">
+                    <button class="game-btn" id="guess-higher" type="button">Higher</button>
+                    <button class="game-btn" id="guess-lower" type="button">Lower</button>
+                    <button class="game-btn" id="game-next" type="button" hidden>Next round</button>
+                    <button class="game-btn" id="game-restart" type="button" hidden>Play again</button>
+                </div>
+                <div class="game-feedback" id="game-feedback"></div>
             </div>
-            <div class="chart-box tall"><canvas id="analysisChart"></canvas></div>
-        </div>
 
-        <!-- stats -->
-        <div class="grid grid-3 mt-16" id="analysis-stats"></div>
+            <div>
+                <div class="card">
+                    <div class="card-head">
+                        <div>
+                            <h2>Your score</h2>
+                            <div class="hint">Right calls out of the rounds you have played</div>
+                        </div>
+                    </div>
+                    <div class="verdict" id="game-score">0 of 0</div>
+                    <div id="game-summary" class="muted" style="font-size:13px; margin-top:10px;">
+                        Five rounds, and then a word about what a score means.
+                    </div>
+                </div>
+                <div class="note mt-16">
+                    The paths come from our own generator, so every answer was fixed before you started
+                    and you can check it. No real price is involved, and nothing here is advice.
+                </div>
+            </div>
+        </div>
 
         <!-- Documentary: rendered on every page by documentary.js, from the
              generated docs.js bundle (prose, run log, sources, hashes). -->
@@ -75,11 +92,10 @@
 
     <footer class="footer" id="footer"></footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="data.js"></script>
     <script src="docs.js" defer></script>
     <script src="common.js"></script>
     <script src="documentary.js"></script>
-    <script src="analysis.js"></script>
+    <script src="play.js"></script>
 </body>
 </html>

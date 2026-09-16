@@ -43,12 +43,16 @@ SOURCE_FILES = [
     "news.js",
     "news-page.js",
     "about.js",
+    "prerequisites.js",
+    "play.js",
     "style.css",
     "index.html",
     "analysis.html",
     "simulation.html",
     "news.html",
     "about.html",
+    "prerequisites.html",
+    "play.html",
 ]
 
 # Logs are quoted as text (they are the point of the logs chapter).
@@ -60,6 +64,7 @@ OUTPUT_FILES = [
     "data/equity.json",
     "data/trades.json",
     "data/prices.json",
+    "data/lessons.json",
     "data/trades.csv",
     "data.js",
     "news-data.js",
@@ -184,12 +189,12 @@ def main():
     say(f"trades       : {trade_count}")
     if missing:
         say(f"missing      : {', '.join(missing)}")
-    say(f"wrote bundle -> {bundle_path} ({os.path.getsize(bundle_path):,} bytes)")
-    say(f"wrote manifest -> {manifest_path}")
+    say(f"wrote bundle : {bundle_path} ({os.path.getsize(bundle_path):,} bytes)")
+    say(f"wrote manifest : {manifest_path}")
 
     log_path = os.path.join(ROOT, "data", "docs.log")
     say(f"docs.js sha256: {sha256(bundle_path)}")
-    say(f"wrote log    -> {log_path}")
+    say(f"wrote log    : {log_path}")
     with open(log_path, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(log) + "\n")
     return 0

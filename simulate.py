@@ -67,6 +67,62 @@ def simulate_prices(tickers, rng):
     return df
 
 
+# ------------------------------------------------------------ teaching set ---
+# A small, deterministic set of paths for the two pages that explain the idea
+# before showing any results: three shapes on the prerequisites page, and five
+# rounds for the guessing game. Deliberately separate from the strategies, so
+# none of it can be read as a result.
+TEACHING_SEED = 20260105
+
+
+def _path(kind, rng, n=60, start=100.0):
+    """One price path with a chosen character: trending up, noisy sideways, or
+    pulled back toward a level (an Ornstein-Uhlenbeck process)."""
+    dt = 1 / 252.0
+    if kind == "climb":
+        drift, vol = 0.30, 0.16
+        steps = (drift - 0.5 * vol * vol) * dt + vol * math.sqrt(dt) * rng.normal(0, 1, n)
+        return start * np.exp(np.cumsum(steps))
+    if kind == "choppy":
+        vol = 0.45
+        steps = (-0.5 * vol * vol) * dt + vol * math.sqrt(dt) * rng.normal(0, 1, n)
+        # De-meaned so the path ends where it began. This shape is about the
+        # wandering, not about arriving somewhere.
+        steps = steps - steps.mean()
+        return start * np.exp(np.cumsum(steps))
+    pull, vol = 40.0, 0.22
+    out = [start]
+    for _ in range(n - 1):
+        x = out[-1]
+        shock = vol * math.sqrt(dt) * start * float(rng.normal(0, 1))
+        out.append(x + pull * (start - x) * dt + shock)
+    return np.array(out)
+
+
+def teaching_set():
+    """The data behind the prerequisites page and the guessing game: three
+    shapes, then five rounds whose last point is the hidden one."""
+    rng = np.random.default_rng(TEACHING_SEED)
+    shapes = [
+        {"key": key, "points": [round(float(x), 2) for x in _path(key, rng)]}
+        for key in ("climb", "choppy", "snap")
+    ]
+    rounds = [
+        {"key": "round-{}".format(i + 1),
+         "points": [round(float(x), 2) for x in _path(kind, rng, n=21)]}
+        for i, kind in enumerate(("climb", "choppy", "snap", "snap", "climb"))
+    ]
+    return {
+        "generated": date.today().isoformat(),
+        "seed": TEACHING_SEED,
+        "note": ("Illustrative paths drawn from the same price model as the simulated market. "
+                 "Not market data, not a forecast, and not advice. In each game round the last "
+                 "point is the one the player has to guess."),
+        "shapes": shapes,
+        "rounds": rounds,
+    }
+
+
 # -------------------------------------------------------------- indicators --
 def sma(series, window):
     return series.rolling(window).mean()
@@ -95,7 +151,7 @@ class Strategy:
 
 class BuyAndHold(Strategy):
     def __init__(self):
-        super().__init__("Buy & Hold", "Benchmark — hold SPY for the full period")
+        super().__init__("Buy & Hold", "Buy the index once and hold it")
 
     def run(self, prices, capital):
         px = prices["SPY"]
@@ -192,7 +248,7 @@ class MeanReversion(Strategy):
 
 class MovingAverageCrossover(Strategy):
     def __init__(self):
-        super().__init__("MA Crossover", "50/200-day golden cross on the S&P 500")
+        super().__init__("MA Crossover", "Buy SPY when the 10-day average rises above the 50-day")
 
     def run(self, prices, capital):
         px = prices["SPY"]
@@ -328,12 +384,12 @@ def sha256(path):
     return h.hexdigest()
 
 
-def write_site_bundle(root_dir, summary, equity_payload, all_trades, prices_payload):
+def write_site_bundle(root_dir, summary, equity_payload, all_trades, prices_payload, lessons_payload):
     """Write `data.js` — the bundled JS data source every page loads with
     <script src="data.js">. Bundling keeps the site working straight from the
     file system (no fetch/JSON round-trip, no CORS surprises).
 
-    Globals exposed: STRATEGIES, EQUITY, TRADES, PRICES (see common.js).
+    Globals exposed: STRATEGIES, EQUITY, TRADES, PRICES, LESSONS (see common.js).
     """
     path = os.path.join(root_dir, "data.js")
     with open(path, "w", encoding="utf-8-sig") as f:
@@ -341,7 +397,8 @@ def write_site_bundle(root_dir, summary, equity_payload, all_trades, prices_payl
         f.write("const STRATEGIES = " + json.dumps(summary, indent=2) + ";\n")
         f.write("const EQUITY = " + json.dumps(equity_payload) + ";\n")
         f.write("const TRADES = " + json.dumps(all_trades) + ";\n")
-        f.write("const PRICES = " + json.dumps(prices_payload) + ";\n\n")
+        f.write("const PRICES = " + json.dumps(prices_payload) + ";\n")
+        f.write("const LESSONS = " + json.dumps(lessons_payload) + ";\n\n")
     return path
 
 
@@ -349,6 +406,7 @@ def write_site_bundle(root_dir, summary, equity_payload, all_trades, prices_payl
 def main():
     rng = np.random.default_rng(SEED)
     prices = simulate_prices([s["ticker"] for s in UNIVERSE], rng)
+    lessons_payload = teaching_set()
     root_dir = os.path.dirname(os.path.abspath(__file__))
     out_dir = os.path.join(root_dir, "data")
     os.makedirs(out_dir, exist_ok=True)
@@ -413,6 +471,8 @@ def main():
         json.dump(all_trades, f)
     with open(os.path.join(out_dir, "prices.json"), "w", encoding="utf-8") as f:
         json.dump(prices_payload, f)
+    with open(os.path.join(out_dir, "lessons.json"), "w", encoding="utf-8") as f:
+        json.dump(lessons_payload, f)
 
     # The trade log as CSV: easy to open in a spreadsheet and quoted in the
     # documentary's "logs" chapter.
@@ -424,7 +484,8 @@ def main():
             writer.writerow([tr["strategy"], tr["date"], tr["ticker"], tr["side"],
                              tr["shares"], tr["price"], tr["value"]])
 
-    bundle_path = write_site_bundle(root_dir, summary, equity_payload, all_trades, prices_payload)
+    bundle_path = write_site_bundle(root_dir, summary, equity_payload, all_trades,
+                                   prices_payload, lessons_payload)
 
     # ------------------------------------------------------------- run log ----
     # The report printed below is also written to data/run.log, so the site can
@@ -440,16 +501,19 @@ def main():
         ("data/equity.json", os.path.join(out_dir, "equity.json")),
         ("data/trades.json", os.path.join(out_dir, "trades.json")),
         ("data/prices.json", os.path.join(out_dir, "prices.json")),
+        ("data/lessons.json", os.path.join(out_dir, "lessons.json")),
         ("data/trades.csv", csv_path),
         ("data.js", bundle_path),
     ]
 
     say("=== stocks4cas simulation complete ===")
-    say(f"period     : {START} -> {END}  ({len(dates)} trading days)")
-    say(f"seed       : {SEED} (numpy default_rng) — re-running reproduces these numbers")
+    say(f"period     : {START} to {END}  ({len(dates)} trading days)")
+    say(f"seed       : {SEED} (numpy default_rng), so re-running reproduces these numbers")
     say(f"capital    : {INITIAL_CAPITAL:,.0f} per strategy")
-    say(f"universe   : {len(UNIVERSE)} tickers — {', '.join(s['ticker'] for s in UNIVERSE)}")
+    say(f"universe   : {len(UNIVERSE)} tickers: {', '.join(s['ticker'] for s in UNIVERSE)}")
     say(f"generated  : {summary['generated']}")
+    say(f"teaching   : {len(lessons_payload['shapes'])} shapes and "
+        f"{len(lessons_payload['rounds'])} game rounds (seed {TEACHING_SEED})")
     say("")
     say("strategy summary (sorted by net P&L)")
     say(f"{'strategy':24} {'pnl':>12} {'ret%':>8} {'sharpe':>7} {'maxDD%':>8} {'trades':>6}")
@@ -467,7 +531,7 @@ def main():
         for t in rows:
             sides[t["side"]] = sides.get(t["side"], 0) + 1
         side_txt = ", ".join(f"{k} {v}" for k, v in sorted(sides.items()))
-        say(f"  {r['name']:24} {len(rows):>4} trades  {rows[0]['date'][:10]} -> "
+        say(f"  {r['name']:24} {len(rows):>4} trades  {rows[0]['date'][:10]} to "
             f"{rows[-1]['date'][:10]}  [{side_txt}]")
     say("")
     say(f"total trades: {len(all_trades)}")
@@ -476,10 +540,10 @@ def main():
     for label, path in outputs:
         say(f"  {sha256(path)}  {label:22} {os.path.getsize(path):>9,} bytes")
     say("")
-    say(f"wrote JSON   -> {out_dir}")
-    say(f"wrote bundle -> {bundle_path}")
+    say(f"wrote JSON   : {out_dir}")
+    say(f"wrote bundle : {bundle_path}")
     log_path = os.path.join(out_dir, "run.log")
-    say(f"wrote log    -> {log_path}")
+    say(f"wrote log    : {log_path}")
 
     with open(log_path, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(report) + "\n")

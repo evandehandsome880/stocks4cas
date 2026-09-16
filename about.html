@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About — stocks4cas</title>
+    <title>About the project | stocks4cas</title>
+    <link rel="preload" href="fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2315171a'/><text x='16' y='22' font-family='monospace' font-size='13' fill='%23e9e7e2' text-anchor='middle'>s4c</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2315171a'/><text x='16' y='24' font-family='Segoe UI Emoji,Apple Color Emoji,Noto Color Emoji,sans-serif' font-size='19' text-anchor='middle'>%F0%9F%90%B1</text></svg>">
 </head>
 <body>
 
     <nav class="navbar">
         <div class="brand">
-            <div class="mark">s4c</div>
+            <div class="mark" aria-hidden="true">🐱</div>
             <div class="brand-name">stocks<span>4</span>cas</div>
         </div>
         <div class="nav-links">
             <a href="index.html" data-key="home">Home</a>
+            <a href="prerequisites.html" data-key="prerequisites">Prerequisites</a>
+            <a href="play.html" data-key="play">Play</a>
             <a href="analysis.html" data-key="analysis">Analysis</a>
             <a href="simulation.html" data-key="simulation">Simulation</a>
             <a href="news.html" data-key="news">News</a>
@@ -34,37 +37,34 @@
         <div class="page-head">
             <div>
                 <div class="eyebrow">About the project</div>
-                <h1>Why we built this</h1>
+                <h1>Why this site exists</h1>
                 <p class="sub">
-                    "stocks4cas" exists to raise awareness of stock prediction — what it can do,
-                    what it can't, and why you should think twice before trusting anyone's crystal ball.
+                    Six common trading rules, one shared simulated market, and every number published so
+                    you can check it yourself.
                 </p>
             </div>
         </div>
 
         <div class="grid grid-3 mb-16">
             <div class="card">
-                <div style="font-size:34px;"></div>
-                <h2 class="mt-8">The mission</h2>
-                <p class="muted" style="font-size:14px; margin-top:8px;">
-                    Demystify quantitative finance and algorithmic trading for students and curious
-                    learners. Knowledge is the best defence against hype.
+                <h2>The work</h2>
+                <p class="muted" style="font-size:13.5px; margin-top:8px;">
+                    A price generator, six rules written down before they were tested, and this site. It
+                    rebuilds from one command and publishes its own logs.
                 </p>
             </div>
             <div class="card">
-                <div style="font-size:34px;"></div>
-                <h2 class="mt-8">The method</h2>
-                <p class="muted" style="font-size:14px; margin-top:8px;">
-                    We simulate a realistic market with seeded randomness, then run six named
-                    strategies through a six-month backtest. Same data, very different outcomes.
+                <h2>The method</h2>
+                <p class="muted" style="font-size:13.5px; margin-top:8px;">
+                    Every rule runs on the same prices, so the differences in the results come from the
+                    rules rather than from the data. The seed is fixed, so the run repeats.
                 </p>
             </div>
             <div class="card">
-                <div style="font-size:34px;"></div>
-                <h2 class="mt-8">The honesty</h2>
-                <p class="muted" style="font-size:14px; margin-top:8px;">
-                    Everything here is simulated and educational. Real markets are noisy,
-                    unpredictable and unforgiving. We never claim otherwise.
+                <h2>The limits</h2>
+                <p class="muted" style="font-size:13.5px; margin-top:8px;">
+                    The market is simulated and the costs of real trading are missing. Nothing here
+                    predicts a price, and none of it is advice.
                 </p>
             </div>
         </div>
@@ -72,8 +72,88 @@
         <div class="card">
             <div class="card-head">
                 <div>
+                    <h2>The CAS project behind this site</h2>
+                    <div class="hint">IBDP Creativity and Service, 5 January to 31 August 2026</div>
+                </div>
+            </div>
+            <p class="muted" style="font-size:14px;">
+                stocks4cas is one part of an IBDP CAS project. The CAS project runs from 5 January to
+                31 August 2026, and the simulated market it studies covers 1 March to 1 September 2026.
+                Alongside this site the project covers AI-assisted research, workflow automation, and
+                short videos written for a student audience.
+            </p>
+            <div class="cas-list mt-16">
+                <div class="cas-item">
+                    <h3>Real, purposeful activity with significant outcomes</h3>
+                    <p>
+                        The work produced something that runs: a price generator, six tested rules, a
+                        published trade log, and a site that rebuilds from one command.
+                    </p>
+                </div>
+                <div class="cas-item">
+                    <h3>Personal challenge</h3>
+                    <p>
+                        None of us had written a backtest, a public website or an automation workflow
+                        before, and the statistics behind the rules were new to all four of us.
+                    </p>
+                </div>
+                <div class="cas-item">
+                    <h3>Thoughtful consideration: planning, reviewing progress, reporting</h3>
+                    <p>
+                        We planned the pipeline, reviewed the results as they came in, and reported them
+                        here and on the news page, including the strategies that lost money.
+                    </p>
+                </div>
+                <div class="cas-item">
+                    <h3>Reflection on outcomes and personal learning</h3>
+                    <p>
+                        The limits chapter records what we got wrong: the trading costs we left out, the
+                        single seed, and a price model that behaves more politely than a real market.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-16">
+            <div class="card-head">
+                <div>
+                    <h2>The learning outcomes we are working towards</h2>
+                    <div class="hint">Six of the seven CAS outcomes, in our own words</div>
+                </div>
+            </div>
+            <div class="fact-grid">
+                <div class="fact">
+                    <h3>Strengths and areas for growth</h3>
+                    <p>We began by naming what we could not do yet, mainly programming and statistics.</p>
+                </div>
+                <div class="fact">
+                    <h3>New challenges, new skills</h3>
+                    <p>The project needed Python, a data pipeline and a public site, and all three were new to us.</p>
+                </div>
+                <div class="fact">
+                    <h3>Initiating and planning</h3>
+                    <p>We chose the question, designed the pipeline and set our own schedule.</p>
+                </div>
+                <div class="fact">
+                    <h3>Commitment and perseverance</h3>
+                    <p>A site that has to be rebuilt whenever the data changes is slow, repetitive work, and it is the part that tests us.</p>
+                </div>
+                <div class="fact">
+                    <h3>Working collaboratively</h3>
+                    <p>Four people, four areas: the generator, the automation, the research and the risk review.</p>
+                </div>
+                <div class="fact watch">
+                    <h3>Ethics of our choices</h3>
+                    <p>Publishing a simulated result invites people to read it as a forecast, so we label it, state its limits and show the losses.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-16">
+            <div class="card-head">
+                <div>
                     <h2>The six strategies</h2>
-                    <div class="hint">A quick glossary of the quant approaches we backtested</div>
+                    <div class="hint">One line each, in the words the simulation uses</div>
                 </div>
             </div>
             <div class="table-scroll">
@@ -93,12 +173,13 @@
                     <div class="hint">How the simulation was generated</div>
                 </div>
             </div>
-            <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;" class="muted">
-                <p> <strong>Window:</strong> 1 March 2026 → 1 September 2026 (132 trading days).</p>
-                <p> <strong>Capital:</strong> Each strategy begins with $1,000,000 of simulated cash.</p>
-                <p> <strong>Prices:</strong> Geometric Brownian motion with per-ticker drift and volatility, seeded for reproducibility.</p>
-                <p> <strong>Metrics:</strong> Net P&amp;L, total return, annualised Sharpe ratio and maximum drawdown.</p>
-                <p> <strong>Engine:</strong> Python + NumPy/Pandas (<code>simulate.py</code>), output as JSON consumed by this site.</p>
+            <div class="muted" style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+                <p><strong>Window:</strong> 1 March to 1 September 2026, which is 132 trading days.</p>
+                <p><strong>Capital:</strong> every strategy starts with $1,000,000 of simulated cash.</p>
+                <p><strong>Prices:</strong> geometric Brownian motion with a drift and volatility set per ticker, seeded so the run repeats.</p>
+                <p><strong>Metrics:</strong> net P&amp;L, total return, annualised Sharpe ratio and maximum drawdown.</p>
+                <p><strong>Engine:</strong> Python with NumPy and Pandas (<code>simulate.py</code>), written out as JSON and bundled for this site.</p>
+                <p><strong>Teaching paths:</strong> the three shapes on the prerequisites page and the five game rounds come from the same engine, under a second seed of their own.</p>
             </div>
         </div>
 

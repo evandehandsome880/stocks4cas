@@ -16,75 +16,73 @@ const S4C_DOC = (() => {
             title: "1. What this site is",
             html: `
                 <p>
-                    This is a student project about <strong>stock prediction</strong>: the industry, the
-                    vocabulary, and the confidence that surrounds it. We built a small market simulation,
-                    ran six named trading strategies through it, and then published everything the run
-                    produced — the numbers, all 170 trades, the source code and the log file itself.
+                    This is the quantitative part of an IBDP CAS project on stock prediction. We built a
+                    small market simulation, ran six named trading strategies through it, and published
+                    everything the run produced: the numbers, all 170 trades, the source code and the log
+                    file itself.
                 </p>
                 <p>
-                    The point is not to sell you a system. The point is to show how much a
-                    plausible-looking result depends on luck, on the choices made before the first line
-                    of code, and on the costs that are easy to leave out. If you finish reading this and
-                    feel more sceptical about anyone promising to predict prices, the project worked.
+                    The site does not sell a system. It shows how far a plausible-looking result depends on
+                    luck, on decisions taken before the first line of code, and on costs that are easy to
+                    leave out. Everything can be checked, including the parts that went badly.
                 </p>`,
         },
         {
             id: "doc-special",
             title: "2. What is different here",
             html: `
-                <p>Most "trading strategy" pages show one curve going up. We tried to do the opposite.</p>
+                <p>Most pages about trading strategies show one curve going up. We tried to do the other thing.</p>
                 <ul>
-                    <li><strong>One market, six strategies.</strong> Every strategy is handed the identical
-                        simulated price series, so any difference in the results comes from the rules, not
-                        from different data.</li>
+                    <li><strong>One market, six rules.</strong> Every strategy receives the identical
+                        simulated price series, so a difference in the results comes from the rules rather
+                        than from the data.</li>
                     <li><strong>Every number is defined.</strong> Net P&amp;L is final equity minus the
-                        starting $1,000,000. Return is that difference as a percentage. Sharpe is the mean
-                        daily return divided by its standard deviation, annualised by &radic;252 (we assume a
-                        zero risk-free rate). Max drawdown is the worst peak-to-trough fall along the way.</li>
-                    <li><strong>Everything is inspectable.</strong> The equity curve, the risk table and the
-                        full trade log — date, ticker, side, shares, price, value — are on the simulation
-                        page, and the raw files are listed below with their checksums.</li>
-                    <li><strong>It is reproducible.</strong> Prices come from a seeded generator (seed 42),
-                        so re-running the simulation produces the same numbers. The log prints a SHA-256
-                        hash for every file it writes, so you can check that the data on this site is the
-                        data the run produced.</li>
-                    <li><strong>Nothing to sign up for.</strong> No accounts, no analytics, no tracking, no
-                        API keys. The whole site is static files plus two Python scripts.</li>
-                    <li><strong>Honest framing throughout.</strong> Headlines on the news page are real and
-                        dated; the prices and the performance are not. Neither is investment advice.</li>
+                        starting $1,000,000, and return is that difference as a percentage. Sharpe is the
+                        mean daily return divided by its standard deviation, annualised by the square root
+                        of 252, with a risk-free rate of zero. Max drawdown is the worst peak-to-trough
+                        fall.</li>
+                    <li><strong>Everything is inspectable.</strong> The equity curve, the risk table and
+                        the full trade log sit on the simulation page, and the raw files are listed further
+                        down with their checksums.</li>
+                    <li><strong>It repeats.</strong> Prices come from a seeded generator (seed 42), so
+                        re-running produces the same numbers, and the log prints a SHA-256 for every file
+                        it writes.</li>
+                    <li><strong>Nothing to sign up for.</strong> No accounts, no analytics, no tracking
+                        and no API keys. The site is static files plus three Python scripts.</li>
+                    <li><strong>The framing is stated.</strong> The headlines on the news page are real and
+                        dated. The prices and the performance are not. Neither is investment advice.</li>
                 </ul>`,
         },
         {
             id: "doc-considered",
             title: "3. What we considered",
             html: `
-                <p>Every row below was a fork in the road. Here is what we picked, and what it cost us.</p>
+                <p>Every row was a fork in the road. Here is what we picked and what it cost us.</p>
                 <div class="table-scroll">
                     <table class="doc-table">
                         <thead>
-                            <tr><th>Decision</th><th>Alternative</th><th>Why — and what it costs</th></tr>
+                            <tr><th>Decision</th><th>Alternative</th><th>Why, and what it costs</th></tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Simulated prices (geometric Brownian motion)</td>
                                 <td>Real historical prices from a market API</td>
-                                <td>No keys, no rate limits, and the site works offline. The cost is that real
-                                    markets have fat tails, volatility clustering and jumps that our generator
-                                    does not reproduce.</td>
+                                <td>No keys, no rate limits, and the site works offline. Real markets have
+                                    fat tails, volatility clustering and jumps that our generator does not
+                                    reproduce.</td>
                             </tr>
                             <tr>
                                 <td>A fixed seed (42)</td>
                                 <td>Fresh randomness on every run</td>
                                 <td>A result you cannot repeat is not evidence. The seed is printed in the
-                                    log; the only field that differs between runs on different days is the
-                                    "generated" date stamp.</td>
+                                    log, and only the date stamp changes between runs.</td>
                             </tr>
                             <tr>
                                 <td>Six named, simple rules</td>
                                 <td>One clever model nobody can read</td>
-                                <td>Rules you can state in a sentence — "buy the five strongest 20-day movers",
-                                    "buy when RSI drops below 30" — are rules you can argue with. A black box
-                                    only invites trust.</td>
+                                <td>Rules you can state in a sentence, such as buying the five strongest
+                                    20-day movers, are rules you can argue with. A model nobody can read
+                                    invites trust instead.</td>
                             </tr>
                             <tr>
                                 <td>Publish every trade and the raw log</td>
@@ -95,8 +93,8 @@ const S4C_DOC = (() => {
                             <tr>
                                 <td>No parameter tuning</td>
                                 <td>Adjust thresholds until the returns look good</td>
-                                <td>That is exactly how backtests fool people: the curve gets fitted to the
-                                    sample. We fixed the rules first and reported whatever came out.</td>
+                                <td>Fitting thresholds until the curve looks good is how a backtest gets tuned
+                                    to its own sample. We fixed the rules first and reported what came out.</td>
                             </tr>
                             <tr>
                                 <td>Ignore commissions and slippage</td>
@@ -141,28 +139,85 @@ const S4C_DOC = (() => {
             html: `
                 <p>Three scripts produce everything the site displays. Nothing is typed in by hand.</p>
                 <ul>
-                    <li><span class="mono">simulate.py</span> — generates the market, runs the six
+                    <li><span class="mono">simulate.py</span> generates the market, runs the six
                         strategies, and writes <span class="mono">data/*.json</span>,
                         <span class="mono">data/trades.csv</span>, <span class="mono">data/run.log</span>
-                        and <span class="mono">data.js</span>.</li>
-                    <li><span class="mono">fetch_news.py</span> — pulls a snapshot of real, dated headlines
+                        and <span class="mono">data.js</span>. It also produces the three teaching shapes
+                        and the five rounds of the guessing game, which use the same engine under a second
+                        seed rather than any strategy numbers.</li>
+                    <li><span class="mono">fetch_news.py</span> pulls a snapshot of real, dated headlines
                         from public RSS feeds, checks every link, and writes
                         <span class="mono">data/news.json</span>, <span class="mono">news-data.js</span> and
                         <span class="mono">data/news.log</span>.</li>
-                    <li><span class="mono">build_docs.py</span> — reads this repository (sources, logs,
-                        checksums) and writes <span class="mono">docs.js</span>, which is what you are
-                        reading right now.</li>
+                    <li><span class="mono">build_docs.py</span> reads this repository, its sources, its logs
+                        and its checksums, and writes <span class="mono">docs.js</span>, which is what you
+                        are reading right now.</li>
                 </ul>
                 <p>
-                    The pages then load those bundles as ordinary script globals — no fetch calls, no
-                    build step in the browser — so the site also works when opened straight from a folder.
-                    The only thing that needs an internet connection is Chart.js, which draws the two
-                    charts, and the article links on the news page, which go to the publishers.
+                    The pages load those bundles as ordinary script globals, with no fetch calls and no
+                    build step in the browser, so the site also works when opened straight from a folder.
+                    The typeface is vendored in <span class="mono">fonts/</span> under the SIL Open Font
+                    License. Chart.js comes from a CDN for the charts on the home, analysis and
+                    prerequisites pages, and the guessing game draws its own line as SVG so it needs
+                    nothing at all. The article links on the news page go to the publishers.
+                </p>`,
+        },
+        {
+            id: "doc-mood",
+            title: "5. The market mood, and how to check it",
+            html: `
+                <p>
+                    The home page carries a reading of the market: <strong>tight money, patient
+                    money</strong>. It is not a forecast and not a recommendation. It is what we took
+                    from the headlines in our own snapshot, dated 16 September 2026, and the reason to
+                    put it on the site is that you can test it.
+                </p>
+                <p>The four headlines behind the reading, quoted as the publishers wrote them:</p>
+                <ul>
+                    <li>CNBC Markets, 12 September 2026: "Inflation is outpacing wage growth again,
+                        squeezing Americans&rsquo; paychecks"</li>
+                    <li>CNBC Markets, 14 September 2026: "Counting the votes: Warsh faces a tough battle as
+                        the Fed girds for expected interest rate hike"</li>
+                    <li>CNBC US Top News, 16 September 2026: "BOJ expected to hike rates by 25 basis points
+                        to fresh three-decade high: CNBC survey"</li>
+                    <li>BBC Business, 15 September 2026: "Why doomsday warnings are not the only threat to
+                        the AI juggernaut"</li>
+                </ul>
+                <p>
+                    Three of them describe rates still rising into an inflation problem, and the fourth
+                    questions the trade that has led the market for two years. Higher rates raise the
+                    discount placed on profit that arrives in the future, which presses hardest on growth
+                    companies, while sectors that earn money today and sell things people buy regardless
+                    of the news cycle tend to hold up better. That is the reasoning behind the sectors
+                    named on the home page.
+                </p>
+                <p>
+                    The same four headlines can be read the other way, and other people will read them
+                    that way. So here is how to check the reading instead of taking it.
+                </p>
+                <ul>
+                    <li>Read the Fed's own words at
+                        <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" target="_blank" rel="noopener noreferrer">federalreserve.gov</a>
+                        rather than a summary of them.</li>
+                    <li>Watch the 10-year Treasury yield, series DGS10 on
+                        <a href="https://fred.stlouisfed.org/series/DGS10" target="_blank" rel="noopener noreferrer">FRED</a>.
+                        Rising yields are the pressure the reading describes.</li>
+                    <li>Check the latest inflation figure from the
+                        <a href="https://www.bls.gov/cpi/" target="_blank" rel="noopener noreferrer">Bureau of Labor Statistics</a>
+                        and whether it sits above or below wage growth.</li>
+                    <li>Compare sector funds with the index over the same weeks, XLE, XLP and XLV against
+                        SPY, and see whether the defensives really are leading.</li>
+                    <li>Read the snapshot itself on <a href="news.html">the news page</a>, where every
+                        headline carries its publisher and its date.</li>
+                </ul>
+                <p class="doc-meta">
+                    Read on 16 September 2026 and left as it was found. Pull a fresh snapshot with
+                    python fetch_news.py and read this chapter again against the new headlines.
                 </p>`,
         },
         {
             id: "doc-limits",
-            title: "7. Limits, and what we would do next",
+            title: "8. Limits, and what we would do next",
             html: `
                 <p>A backtest is a claim about one possible past. Here is where ours is weakest.</p>
                 <ul>
@@ -172,13 +227,13 @@ const S4C_DOC = (() => {
                         simulations and report the distribution of outcomes instead of a single path.</li>
                     <li><strong>The price model is too well behaved.</strong> Geometric Brownian motion has
                         no fat tails, no volatility clustering, no gaps and no regime changes.</li>
-                    <li><strong>Hand-picked universe.</strong> Ten large tickers chosen by us — a form of
-                        survivorship bias, since all ten still exist and none went to zero.</li>
+                    <li><strong>Hand-picked universe.</strong> Ten large tickers chosen by us, which is a
+                        form of survivorship bias, since all ten still exist and none went to zero.</li>
                     <li><strong>Six months, daily bars.</strong> Short by any standard, and daily data hides
                         everything that happens inside a day.</li>
                     <li><strong>No taxes or withdrawals</strong>, and no liquidity limits on position size.</li>
                     <li><strong>The news is a snapshot.</strong> It ages from the moment it is pulled, and we
-                        deliberately do not feed it into the simulation — mixing real headlines with
+                        deliberately keep it out of the simulation, because mixing real headlines with
                         simulated prices would make the results unreadable.</li>
                 </ul>
                 <p>
@@ -189,7 +244,7 @@ const S4C_DOC = (() => {
         },
         {
             id: "doc-reproduce",
-            title: "8. Reproduce it",
+            title: "9. Reproduce it",
             html: `
                 <p>Everything on this site can be regenerated from the repository in a few commands.</p>
                 <pre>python -m venv .venv                 # once
@@ -213,7 +268,7 @@ python -m http.server 8000           # then open http://localhost:8000/</pre>
 
     const missingBlock = () => `
         <section class="doc-chapter" id="doc-logs">
-            <h2>5. The logs · 6. The code</h2>
+            <h2>6. The logs · 7. The code</h2>
             <div class="note doc-note">
                 <strong>Generated content is not loaded.</strong>
                 <span class="mono">docs.js</span> is missing, so the run logs and the source code cannot
@@ -233,13 +288,13 @@ python -m http.server 8000           # then open http://localhost:8000/</pre>
                     <tbody>
                         ${trades.slice(0, 40).map((t) => `
                             <tr>
-                                <td class="mono">${S4C.fmtDate(t.date)}</td>
+                                <td class="num">${S4C.fmtDate(t.date)}</td>
                                 <td>${S4C.esc(t.strategy)}</td>
-                                <td class="mono">${S4C.esc(t.ticker)}</td>
+                                <td class="num">${S4C.esc(t.ticker)}</td>
                                 <td>${S4C.esc(t.side)}</td>
-                                <td class="mono">${Number(t.shares).toLocaleString()}</td>
-                                <td class="mono">${S4C.fmtUSD(t.price, 2)}</td>
-                                <td class="mono">${S4C.fmtUSD(t.value)}</td>
+                                <td class="num">${Number(t.shares).toLocaleString()}</td>
+                                <td class="num">${S4C.fmtUSD(t.price, 2)}</td>
+                                <td class="num">${S4C.fmtUSD(t.value)}</td>
                             </tr>`).join("")}
                     </tbody>
                 </table>
@@ -248,12 +303,12 @@ python -m http.server 8000           # then open http://localhost:8000/</pre>
 
     const logsChapter = (docs) => `
         <section class="doc-chapter" id="doc-logs">
-            <h2>5. The logs</h2>
+            <h2>6. The logs</h2>
             <p>
-                Below are the run logs exactly as the scripts wrote them — not tidied up, not summarised.
-                They carry the seed, the per-strategy results, the trade counts and a SHA-256 hash of
-                every file the run produced, so you can check that what this site displays is what the
-                run actually generated.
+                Below are the run logs exactly as the scripts wrote them, not tidied up and not
+                summarised. They carry the seed, the per-strategy results, the trade counts and a
+                SHA-256 hash of every file the run produced, so you can check that what this site
+                displays is what the run actually generated.
             </p>
             ${docs.logs.map((log) => `
                 <h3>${S4C.esc(log.path)}</h3>
@@ -283,11 +338,11 @@ python -m http.server 8000           # then open http://localhost:8000/</pre>
 
     const codeChapter = (docs) => `
         <section class="doc-chapter" id="doc-code">
-            <h2>6. The code</h2>
+            <h2>7. The code</h2>
             <p>
                 Every hand-written file in the project, in full: ${docs.files.length} files,
-                ${docs.totalLines.toLocaleString()} lines. Generated bundles — such as
-                <span class="mono">data.js</span> and <span class="mono">news-data.js</span> — appear in
+                ${docs.totalLines.toLocaleString()} lines. Generated bundles, such as
+                <span class="mono">data.js</span> and <span class="mono">news-data.js</span>, appear in
                 the logs chapter as checksums instead of being quoted back into themselves, and this
                 bundle's own checksum is recorded in <span class="mono">data/docs.log</span>.
             </p>
@@ -334,9 +389,9 @@ python -m http.server 8000           # then open http://localhost:8000/</pre>
     const tocHTML = (withGenerated) => {
         const items = CHAPTERS.map((c) => `<a href="#${c.id}">${S4C.esc(c.title)}</a>`);
         if (withGenerated) {
-            items.splice(4, 0,
-                `<a href="#doc-logs">5. The logs</a>`,
-                `<a href="#doc-code">6. The code</a>`);
+            items.splice(5, 0,
+                `<a href="#doc-logs">6. The logs</a>`,
+                `<a href="#doc-code">7. The code</a>`);
         }
         return `<nav class="doc-toc">${items.join("")}</nav>`;
     };
@@ -346,20 +401,20 @@ python -m http.server 8000           # then open http://localhost:8000/</pre>
         if (!host) return;
 
         const docs = S4C.getDocs();
-        const first = CHAPTERS.slice(0, 4).map(chapterHTML).join("");
+        const first = CHAPTERS.slice(0, 5).map(chapterHTML).join("");
         const generated = docs && docs.files && docs.files.length
             ? logsChapter(docs) + codeChapter(docs)
             : missingBlock();
-        const last = CHAPTERS.slice(4).map(chapterHTML).join("");
+        const last = CHAPTERS.slice(5).map(chapterHTML).join("");
 
         host.innerHTML = `
             <div class="eyebrow">Documentary</div>
             <h2 style="font-size:20px;">How this project was built, and what we had to decide</h2>
             <p class="doc-intro">
-                Everything here — the market, the six strategies, the news snapshot and this documentary
-                itself — can be rebuilt from the repository. This section explains what we made, what is
-                unusual about it, and which trade-offs we chose. Then it shows the raw run logs and the
-                complete source code, so that nothing on this site has to be taken on trust.
+                Everything here, including the market, the six strategies, the news snapshot and this
+                documentary, can be rebuilt from the repository. This section explains what we made and
+                which trade-offs we chose, then shows the run logs and the full source, so that nothing
+                on the site has to be taken on trust.
             </p>
             ${tocHTML(!!docs)}
             ${docs ? `<p class="doc-meta">docs.js generated ${S4C.esc(docs.generated)} · ${docs.files.length} source files · ${docs.totalLines.toLocaleString()} lines · ${docs.logs.length} run logs</p>` : ""}

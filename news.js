@@ -15,24 +15,24 @@ const S4C_NEWS = (() => {
 
     const INSIGHTS = [
         {
-            title: "The rate story dominates everything",
-            body: "When long-dated government yields move, they re-price every other asset at once. Note how a single macro variable can swamp six very different trading strategies — that is a lesson about exposure, not about prediction.",
+            title: "Rates set the price of everything else",
+            body: "When long-dated government yields move, they re-price every asset at once. One macro variable can swamp six very different trading strategies, which says more about shared exposure than about prediction.",
         },
         {
             title: "Concentration cuts both ways",
-            body: "A handful of very large companies now drive a large share of index moves. That helps trend-following strategies in a strong market and punishes them in a reversal, because the same few names drive both directions.",
+            body: "A handful of very large companies drive much of the index. That helps trend-following rules while the market rises and hurts them when it turns, because the same few names lead in both directions.",
         },
         {
-            title: "Headlines are not signals",
-            body: "Every article on this page is real reporting about real events. None of it tells you what happens next. Trading on the news usually means trading on what other people have already read, priced in, and acted on.",
+            title: "A headline is not a signal",
+            body: "Every article on this page is real reporting about a real event. None of it says what happens next, and by the time you read it, other people have read it and priced it in.",
         },
         {
-            title: "Diversification is a timing-free decision",
-            body: "The simulation's dollar-cost averaging strategy made no attempt to time the market and still finished ahead. That is not proof it works forever — it is evidence that a boring rule beats a confident guess more often than people expect.",
+            title: "Doing nothing is still a decision",
+            body: "The dollar-cost averaging strategy made no attempt to time the market and still finished near the top of the table. That is one run of one simulated market, not proof that patience always wins.",
         },
         {
-            title: "Costs and slippage are missing",
-            body: "Our backtest ignores commissions, spreads and the market impact of real orders. A strategy with 81 small trades (like dollar-cost averaging here) would pay those costs more often. Add them and the ranking can change.",
+            title: "Our costs are missing",
+            body: "The backtest ignores commissions, spreads and the market impact of real orders. The rule with 81 small trades would pay those costs most often, and adding them could reorder the table.",
         },
     ];
 
@@ -81,7 +81,7 @@ const S4C_NEWS = (() => {
             Headlines, summaries and dates are quoted verbatim from the publishers
             (${feeds}) and every card links to the original article. The list was
             pulled on ${S4C.fmtDateTime(snapshot.generated)} and is only as fresh as
-            that moment — re-run <span class="mono">python fetch_news.py</span> to refresh it.
+            that moment. Re-run <span class="mono">python fetch_news.py</span> to refresh it.
             Nothing here is our own reporting, and none of it is investment advice.`;
     };
 

@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stocks4cas — Stock Prediction Awareness</title>
+    <title>stocks4cas | Can an algorithm read a market?</title>
+    <link rel="preload" href="fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2315171a'/><text x='16' y='22' font-family='monospace' font-size='13' fill='%23e9e7e2' text-anchor='middle'>s4c</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2315171a'/><text x='16' y='24' font-family='Segoe UI Emoji,Apple Color Emoji,Noto Color Emoji,sans-serif' font-size='19' text-anchor='middle'>%F0%9F%90%B1</text></svg>">
 </head>
 <body>
 
     <nav class="navbar">
         <div class="brand">
-            <div class="mark">s4c</div>
+            <div class="mark" aria-hidden="true">🐱</div>
             <div class="brand-name">stocks<span>4</span>cas</div>
         </div>
         <div class="nav-links">
             <a href="index.html" data-key="home">Home</a>
+            <a href="prerequisites.html" data-key="prerequisites">Prerequisites</a>
+            <a href="play.html" data-key="play">Play</a>
             <a href="analysis.html" data-key="analysis">Analysis</a>
             <a href="simulation.html" data-key="simulation">Simulation</a>
             <a href="news.html" data-key="news">News</a>
@@ -31,18 +34,95 @@
 
     <main class="wrap">
 
-        <!-- ===== HERO ===== -->
+        <!-- ===== BANNER ===== -->
         <section class="hero">
-            <div class="eyebrow">Quantitative finance · Educational project</div>
-            <h1>Can algorithms <span class="grad">beat the market?</span></h1>
+            <div class="eyebrow">IBDP CAS project · Creativity and Service</div>
+            <h1>Can an algorithm <span class="grad">read a market?</span></h1>
             <p>
-                We backtested six named quantitative trading strategies on a simulated market from
-                <strong>1 March → 1 September 2026</strong>. This dashboard shows how each one performed —
-                profits, losses, and the lessons in between.
+                Six named strategies ran through the same simulated market between
+                <strong>1 March and 1 September 2026</strong>. Here is what each one made or lost, and what
+                the simulation leaves out.
             </p>
             <div class="hero-ctas">
-                <a class="btn btn-primary" href="simulation.html">Explore the simulation →</a>
-                <a class="btn btn-ghost" href="analysis.html">View stock analysis</a>
+                <a class="btn btn-primary" href="prerequisites.html">Start with the basics</a>
+                <a class="btn btn-ghost" href="play.html">Try the guessing game</a>
+                <a class="btn btn-ghost" href="simulation.html">Go to the results</a>
+            </div>
+        </section>
+
+        <!-- ===== MARKET MOOD ===== -->
+        <section class="mood" id="mood">
+            <div class="eyebrow">Market mood</div>
+            <h2 class="mood-phrase">Tight money, patient money.</h2>
+            <p class="mood-sub">
+                Our reading of the news snapshot: an inflationary market with rates still rising. If that
+                reading holds, the sectors likely to lead are the ones earning money now rather than the
+                ones promising it later.
+            </p>
+            <div class="mood-meta">
+                <span class="pill accent">Inflationary · rate-pressured · defensive tilt</span>
+                <span class="faint" style="font-size:12.5px;">Read from the snapshot of <span id="mood-date">the latest pull</span></span>
+                <div class="tip">
+                    <button class="tip-toggle" type="button" aria-expanded="false" aria-controls="mood-why">Why this reading, and how to check it</button>
+                    <div class="tip-panel" id="mood-why">
+                        <h4>Why we read it this way</h4>
+                        <p>
+                            Four of the headlines we pulled point the same way. The Fed is expected to raise
+                            rates again, inflation is running ahead of wage growth, Japan's central bank is
+                            expected to lift rates to a three-decade high, and one story asks how much
+                            further the AI trade can run.
+                        </p>
+                        <h4>Why it matters</h4>
+                        <p>
+                            Higher rates raise the discount placed on profit that arrives years from now,
+                            which presses hardest on growth. Sectors that produce cash today, and the ones
+                            whose demand survives a squeeze on household budgets, tend to hold up better in
+                            that setting. The same headlines can be read the other way, which is why we
+                            show the checks rather than a call.
+                        </p>
+                        <h4>How you can check it</h4>
+                        <ul>
+                            <li>Meeting dates and statements, from the Fed itself:
+                                <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" target="_blank" rel="noopener noreferrer">federalreserve.gov</a></li>
+                            <li>The 10-year Treasury yield, series DGS10:
+                                <a href="https://fred.stlouisfed.org/series/DGS10" target="_blank" rel="noopener noreferrer">FRED</a></li>
+                            <li>The latest inflation release:
+                                <a href="https://www.bls.gov/cpi/" target="_blank" rel="noopener noreferrer">Bureau of Labor Statistics</a></li>
+                            <li>The VIX, the market's own fear gauge:
+                                <a href="https://www.cboe.com/tradable_products/vix/" target="_blank" rel="noopener noreferrer">Cboe</a></li>
+                            <li>Sector funds against the index, meaning XLE, XLP, XLV and XLK against SPY, on
+                                <a href="https://finance.yahoo.com/quote/SPY/" target="_blank" rel="noopener noreferrer">any quote page</a></li>
+                            <li>Our own dated headlines: <a href="news.html">the news page</a></li>
+                        </ul>
+                        <p class="doc-meta">
+                            A reading of one day's headlines, not a forecast. Re-pull it with
+                            <span class="mono">python fetch_news.py</span>. The full version is in
+                            <a href="#documentary">the documentary</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="fact-grid">
+                <div class="fact">
+                    <h3>Energy and real assets</h3>
+                    <p>Inflation lifts the value of things you can hold, and the snapshot carries energy
+                       project news. The cash arrives now rather than later.</p>
+                </div>
+                <div class="fact">
+                    <h3>Health care and consumer staples</h3>
+                    <p>People keep buying medicine, food and toothpaste when budgets tighten, so earnings
+                       hold up even when spending does not.</p>
+                </div>
+                <div class="fact">
+                    <h3>Financials</h3>
+                    <p>Higher rates can widen lending margins, though they also strain borrowers. This one
+                       cuts both ways.</p>
+                </div>
+                <div class="fact watch">
+                    <h3>Technology and semiconductors</h3>
+                    <p>Growth valuations lean on low rates, and the snapshot questions the AI trade on top
+                       of that. Not a reason to avoid the sector, a reason to size it carefully.</p>
+                </div>
             </div>
         </section>
 
@@ -73,7 +153,7 @@
                 <div class="card-head">
                     <div>
                         <h2>Profit &amp; Loss</h2>
-                        <div class="hint">Net P&amp;L by strategy, Mar–Sep 2026</div>
+                        <div class="hint">Net P&amp;L by strategy, March to September 2026</div>
                     </div>
                 </div>
                 <div class="bar-list" id="pnl-bars"></div>
@@ -112,6 +192,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="data.js"></script>
+    <script src="news-data.js"></script>
     <script src="docs.js" defer></script>
     <script src="common.js"></script>
     <script src="documentary.js"></script>

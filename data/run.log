@@ -1,9 +1,10 @@
 === stocks4cas simulation complete ===
-period     : 2026-03-01 -> 2026-09-01  (132 trading days)
-seed       : 42 (numpy default_rng) — re-running reproduces these numbers
+period     : 2026-03-01 to 2026-09-01  (132 trading days)
+seed       : 42 (numpy default_rng), so re-running reproduces these numbers
 capital    : 1,000,000 per strategy
-universe   : 10 tickers — MSFT, NVDA, AAPL, AMZN, JPM, XOM, JNJ, KO, TSLA, SPY
+universe   : 10 tickers: MSFT, NVDA, AAPL, AMZN, JPM, XOM, JNJ, KO, TSLA, SPY
 generated  : 2026-09-16
+teaching   : 3 shapes and 5 game rounds (seed 20260105)
 
 strategy summary (sorted by net P&L)
 strategy                          pnl     ret%  sharpe   maxDD% trades
@@ -15,23 +16,24 @@ Momentum                   -22,547.13    -2.25   -0.39    -8.41     55
 Pairs Trading              -55,566.12    -5.56   -1.48    -6.15      2
 
 trade log per strategy
-  Dollar-Cost Averaging      81 trades  2026-03-02 -> 2026-08-31  [BUY 81]
-  MA Crossover                3 trades  2026-06-01 -> 2026-08-14  [BUY 2, SELL 1]
-  Buy & Hold                  1 trades  2026-03-02 -> 2026-03-02  [BUY 1]
-  Mean Reversion             28 trades  2026-03-20 -> 2026-08-25  [BUY 16, SELL 12]
-  Momentum                   55 trades  2026-03-31 -> 2026-08-25  [BUY 30, SELL 25]
-  Pairs Trading               2 trades  2026-07-14 -> 2026-07-14  [BUY 1, SHORT 1]
+  Dollar-Cost Averaging      81 trades  2026-03-02 to 2026-08-31  [BUY 81]
+  MA Crossover                3 trades  2026-06-01 to 2026-08-14  [BUY 2, SELL 1]
+  Buy & Hold                  1 trades  2026-03-02 to 2026-03-02  [BUY 1]
+  Mean Reversion             28 trades  2026-03-20 to 2026-08-25  [BUY 16, SELL 12]
+  Momentum                   55 trades  2026-03-31 to 2026-08-25  [BUY 30, SELL 25]
+  Pairs Trading               2 trades  2026-07-14 to 2026-07-14  [BUY 1, SHORT 1]
 
 total trades: 170
 
 outputs (sha256)
-  34006f4b3e636c95d421b654c488de10e8280611985e5bf700fd5d4897038829  data/strategies.json       1,849 bytes
+  500cf4a0d6eaa9157c03a69631e2bd826c05347c584818cb2e8c58d28e0a69fc  data/strategies.json       1,850 bytes
   4e7ab7bc98aaee171440cda0e40072eadf6e734f3b1928830cb89d25f8b0477c  data/equity.json          12,107 bytes
   dca8dadd8374e45152ad81b829cf94c917a82ed1e7d1968950393905cde9953a  data/trades.json          25,735 bytes
   d67f2ed969090e194306d73eed6b9cfb7e9b543ac0d194a189ac8a9e9ee02818  data/prices.json          13,337 bytes
+  cf354bfd8467d143629aba72b16bb387ae36584a6d85e299d8dd703e4ebaff47  data/lessons.json          2,655 bytes
   4b2e18eae000d1f70e0481c6c43443e41c03762a43cde7605b0304f0474d421a  data/trades.csv           11,841 bytes
-  fa54caee8452ae1bb986b282bf2785793ad0cf4dbe0928c1c2e862112ecdc82f  data.js                   53,174 bytes
+  392da299aa1c5020d61a5207599d7d75af69300a74a772ee79145ee4a6fd3a15  data.js                   55,849 bytes
 
-wrote JSON   -> C:\Users\Jiang\Downloads\sfc\stocks4cas\data
-wrote bundle -> C:\Users\Jiang\Downloads\sfc\stocks4cas\data.js
-wrote log    -> C:\Users\Jiang\Downloads\sfc\stocks4cas\data\run.log
+wrote JSON   : C:\Users\Jiang\Downloads\sfc\stocks4cas\data
+wrote bundle : C:\Users\Jiang\Downloads\sfc\stocks4cas\data.js
+wrote log    : C:\Users\Jiang\Downloads\sfc\stocks4cas\data\run.log

@@ -12,11 +12,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderTicker(prices);
     renderKPIs(strategies);
-    renderEquityChart(equity);
     renderPnlBars(strategies);
     renderTopPerformer(strategies);
     renderLessons(strategies);
+    renderMoodDate();
+    initMoodTips();
+
+    // The canvas does not repaint when Montserrat finishes loading, so the
+    // equity chart waits for the font before it draws.
+    S4C.whenFontsReady(() => renderEquityChart(equity));
 });
+
+/* ---------------- market mood ---------------- */
+
+// The mood is our reading of the news snapshot, so the date it was read is
+// taken from that snapshot rather than typed in here.
+function renderMoodDate() {
+    const el = document.getElementById("mood-date");
+    const snapshot = S4C.getNews();
+    if (!el) return;
+    el.textContent = snapshot && snapshot.generated ? S4C.fmtDate(snapshot.generated) : "the latest pull";
+}
+
+// The panel opens on hover (CSS) and on a click or tap (here).
+function initMoodTips() {
+    document.querySelectorAll(".tip").forEach((tip) => {
+        const btn = tip.querySelector(".tip-toggle");
+        if (!btn) return;
+        btn.addEventListener("click", () => {
+            const open = tip.classList.toggle("open");
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        document.querySelectorAll(".tip.open").forEach((tip) => {
+            tip.classList.remove("open");
+            const btn = tip.querySelector(".tip-toggle");
+            if (btn) btn.setAttribute("aria-expanded", "false");
+        });
+    });
+}
 
 /* ---------------- ticker strip ---------------- */
 function renderTicker(prices) {
@@ -64,12 +101,12 @@ function renderKPIs(strategies) {
         </div>
         <div class="kpi">
             <div class="label">Best strategy</div>
-            <div class="value up">${best ? S4C.fmtUSD(best.pnl) : "—"}</div>
+            <div class="value up">${best ? S4C.fmtUSD(best.pnl) : "n/a"}</div>
             <div class="delta up">${best ? best.name : ""}</div>
         </div>
         <div class="kpi">
             <div class="label">Worst strategy</div>
-            <div class="value down">${worst ? S4C.fmtUSD(worst.pnl) : "—"}</div>
+            <div class="value down">${worst ? S4C.fmtUSD(worst.pnl) : "n/a"}</div>
             <div class="delta down">${worst ? worst.name : ""}</div>
         </div>`;
 }
@@ -169,7 +206,6 @@ function renderTopPerformer(strategies) {
 
     el.innerHTML = `
         <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-            <div style="font-size:44px;"></div>
             <div>
                 <div style="font-size:20px; font-weight:800;">${best.name}</div>
                 <div class="muted" style="font-size:13px; margin-top:4px;">${best.tagline}</div>
@@ -190,10 +226,10 @@ function renderLessons(strategies) {
     const best = sorted[0];
     const worst = sorted[sorted.length - 1];
     const lessons = [
-        ` <strong>${best ? best.name : "—"}</strong> led the field at <strong class="up">${best ? S4C.fmtPct(best.return_pct) : ""}</strong>, while <strong>${worst ? worst.name : "—"}</strong> fell <strong class="down">${worst ? S4C.fmtPct(worst.return_pct) : ""}</strong> — the same market, very different outcomes.`,
-        " Strategies with steady, rule-based entries (like dollar-cost averaging) often smooth volatility, while aggressive timing can amplify drawdowns.",
-        " No strategy predicted the future. These results come from a <em>simulated</em> market — real predictions carry far more uncertainty and risk.",
-        " The goal of this project is awareness: understand what quant strategies claim to do before trusting any “prediction” you see online.",
+        `The same market produced <strong class="up">${best ? S4C.fmtPct(best.return_pct) : ""}</strong> for ${best ? best.name : "the leader"} and <strong class="down">${worst ? S4C.fmtPct(worst.return_pct) : ""}</strong> for ${worst ? worst.name : "the laggard"}, which says more about the rules than about the market.`,
+        "The steadiest rule on this page, dollar-cost averaging, made no attempt to time anything and still finished near the top of the table.",
+        "Chasing recent moves cost money in a market that kept turning, and the entries are what did the damage.",
+        "The backtest ignores commissions and spreads, so the rule that traded most often would look worse once costs are counted.",
     ];
     el.innerHTML = lessons.map((l) => `<div>${l}</div>`).join("");
 }

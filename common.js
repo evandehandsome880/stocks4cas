@@ -9,7 +9,7 @@ const S4C = (() => {
     /* ---------------- formatting ---------------- */
 
     const fmtUSD = (n, digits = 0) => {
-        if (n === null || n === undefined || isNaN(n)) return "—";
+        if (n === null || n === undefined || isNaN(n)) return "n/a";
         const sign = n < 0 ? "-" : "";
         const abs = Math.abs(n);
         if (abs >= 1e9) return sign + "$" + (abs / 1e9).toFixed(2) + "B";
@@ -19,7 +19,7 @@ const S4C = (() => {
     };
 
     const fmtPct = (n, digits = 2) => {
-        if (n === null || n === undefined || isNaN(n)) return "—";
+        if (n === null || n === undefined || isNaN(n)) return "n/a";
         return (n >= 0 ? "+" : "") + Number(n).toFixed(digits) + "%";
     };
 
@@ -85,6 +85,22 @@ const S4C = (() => {
     /* ---------------- chart defaults ---------------- */
     // Colours are read from the CSS custom properties so charts follow the
     // active theme; series colours are mid-tone so they read on both.
+
+    // Montserrat arrives after the first paint, and a canvas does not repaint
+    // when a font loads, so the charts wait for document.fonts.ready. Where the
+    // Font Loading API is missing the callback simply runs straight away.
+    const FONT_STACK = '"Montserrat", "Segoe UI", system-ui, -apple-system, Arial, sans-serif';
+
+    const whenFontsReady = (fn) => {
+        const run = () => { try { fn(); } catch (e) { console.error(e); } };
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+        else run();
+    };
+
+    if (typeof Chart !== "undefined") {
+        Chart.defaults.font.family = FONT_STACK;
+        Chart.defaults.font.size = 11;
+    }
 
     const cssVar = (name, fallback) => {
         const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -165,6 +181,7 @@ const S4C = (() => {
     const getEquity = () => (typeof EQUITY !== "undefined" ? EQUITY : null);
     const getTrades = () => (typeof TRADES !== "undefined" ? TRADES : []);
     const getPrices = () => (typeof PRICES !== "undefined" ? PRICES : null);
+    const getLessons = () => (typeof LESSONS !== "undefined" ? LESSONS : null);
     const getNews = () => (typeof NEWS !== "undefined" ? NEWS : null);
     const getDocs = () => (typeof DOCS !== "undefined" ? DOCS : null);
 
@@ -186,11 +203,13 @@ const S4C = (() => {
 
     const footerHTML = () => `
         <div>
-            <strong>stocks4cas</strong> — a student project on stock-prediction awareness.
-            <div class="mt-8">Every price, trade and headline here is simulated or quoted for education.</div>
+            <strong>stocks4cas</strong> is an IBDP CAS project on stock-prediction awareness.
+            <div class="mt-8">The market here is simulated, and the headlines are quoted from their publishers.</div>
         </div>
         <div style="display:flex;gap:16px;flex-wrap:wrap;">
             <a href="index.html">Home</a>
+            <a href="prerequisites.html">Prerequisites</a>
+            <a href="play.html">Play</a>
             <a href="analysis.html">Analysis</a>
             <a href="simulation.html">Simulation</a>
             <a href="news.html">News</a>
@@ -198,9 +217,9 @@ const S4C = (() => {
             <a href="#documentary">Documentary</a>
         </div>
         <div class="disclaimer" style="flex-basis:100%;">
-            <strong>Disclaimer:</strong> All prices, trades and performance figures on this site are simulated or
-            illustrative for educational purposes. News headlines and summaries belong to their publishers and link
-            to the original articles. Nothing here constitutes financial advice — always do your own research.
+            <strong>Disclaimer:</strong> Every price, trade and performance figure on this site is simulated or
+            illustrative, and was produced for education. News headlines and summaries belong to their publishers
+            and link to the original articles. Nothing here is financial advice, and nothing here predicts a real price.
         </div>`;
 
     const renderFooter = () => {
@@ -211,8 +230,8 @@ const S4C = (() => {
     return {
         fmtUSD, fmtPct, fmtDate, fmtDateTime, esc,
         getTheme, setTheme, toggleTheme, initTheme, onThemeChange,
-        COLORS, chartColor, hexToRgba, palette, chartBase, moneyScale,
-        getStrategies, getStrategyMeta, getEquity, getTrades, getPrices, getNews, getDocs,
+        COLORS, chartColor, hexToRgba, palette, chartBase, moneyScale, whenFontsReady, FONT_STACK,
+        getStrategies, getStrategyMeta, getEquity, getTrades, getPrices, getLessons, getNews, getDocs,
         initNav, renderFooter,
     };
 })();

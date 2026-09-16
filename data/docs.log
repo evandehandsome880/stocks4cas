@@ -1,41 +1,46 @@
 === stocks4cas documentary build ===
-  README.md                 76 lines     3,874 bytes
+  README.md                 85 lines     4,676 bytes
   requirements.txt           4 lines       144 bytes
   .gitignore                 9 lines        94 bytes
-  simulate.py              489 lines    21,001 bytes
+  simulate.py              553 lines    23,936 bytes
   fetch_news.py            243 lines     8,926 bytes
-  build_docs.py            199 lines     6,062 bytes
+  build_docs.py            204 lines     6,171 bytes
   build.py                  44 lines     1,268 bytes
   theme.js                  21 lines       949 bytes
-  common.js                218 lines     9,198 bytes
-  documentary.js           376 lines    21,845 bytes
-  script.js                199 lines     8,765 bytes
-  analysis.js              187 lines     7,937 bytes
-  simulation.js            144 lines     6,754 bytes
-  news.js                   98 lines     4,749 bytes
+  common.js                237 lines    10,142 bytes
+  documentary.js           431 lines    25,547 bytes
+  script.js                235 lines    10,082 bytes
+  analysis.js              187 lines     8,004 bytes
+  simulation.js            144 lines     6,753 bytes
+  news.js                   98 lines     4,586 bytes
   news-page.js              52 lines     1,876 bytes
   about.js                  33 lines     1,190 bytes
-  style.css                604 lines    16,261 bytes
-  index.html               120 lines     5,084 bytes
-  analysis.html             82 lines     3,384 bytes
-  simulation.html          118 lines     4,893 bytes
-  news.html                 83 lines     3,500 bytes
-  about.html               119 lines     5,374 bytes
-  data/run.log             log           2,229 bytes
+  prerequisites.js          66 lines     2,562 bytes
+  play.js                  175 lines     7,136 bytes
+  style.css                766 lines    22,383 bytes
+  index.html               201 lines    10,686 bytes
+  analysis.html             85 lines     3,699 bytes
+  simulation.html          121 lines     5,206 bytes
+  news.html                 86 lines     3,807 bytes
+  about.html               200 lines     9,869 bytes
+  prerequisites.html       213 lines     9,794 bytes
+  play.html                101 lines     4,635 bytes
+  data/run.log             log           2,386 bytes
   data/news.log            log           2,298 bytes
-  data/strategies.json    generated     1,849 bytes
+  data/strategies.json    generated     1,850 bytes
   data/equity.json        generated    12,107 bytes
   data/trades.json        generated    25,735 bytes
   data/prices.json        generated    13,337 bytes
+  data/lessons.json       generated     2,655 bytes
   data/trades.csv         generated    11,841 bytes
-  data.js                 generated    53,174 bytes
+  data.js                 generated    55,849 bytes
   news-data.js            generated     6,475 bytes
 
-source files : 22 (3,518 lines)
+source files : 26 (4,594 lines)
 run logs     : 2
-outputs      : 7
+outputs      : 8
 trades       : 170
-wrote bundle -> C:\Users\Jiang\Downloads\sfc\stocks4cas\docs.js (156,285 bytes)
-wrote manifest -> C:\Users\Jiang\Downloads\sfc\stocks4cas\data\docs.json
-docs.js sha256: 25fb261e69783f88fa1041c306b6280be6d07fcae414374e7e5c346b6caa7044
-wrote log    -> C:\Users\Jiang\Downloads\sfc\stocks4cas\data\docs.log
+wrote bundle : C:\Users\Jiang\Downloads\sfc\stocks4cas\docs.js (209,019 bytes)
+wrote manifest : C:\Users\Jiang\Downloads\sfc\stocks4cas\data\docs.json
+docs.js sha256: 9852e4c8d3f9341c4fbb16b4dee3a6bf77c0045894bc5b5f31b00d85fe40c0c2
+wrote log    : C:\Users\Jiang\Downloads\sfc\stocks4cas\data\docs.log

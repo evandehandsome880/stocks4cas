@@ -18,7 +18,7 @@
     },
     {
       "name": "MA Crossover",
-      "tagline": "50/200-day golden cross on the S&P 500",
+      "tagline": "Buy SPY when the 10-day average rises above the 50-day",
       "return_pct": 2.98,
       "pnl": 29769.67,
       "sharpe": 1.1,
@@ -28,7 +28,7 @@
     },
     {
       "name": "Buy & Hold",
-      "tagline": "Benchmark \u2014 hold SPY for the full period",
+      "tagline": "Buy the index once and hold it",
       "return_pct": 2.92,
       "pnl": 29224.03,
       "sharpe": 0.59,

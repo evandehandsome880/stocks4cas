@@ -2,14 +2,14 @@
   "generated": "2026-09-16",
   "generator": "build_docs.py",
   "note": "Everything below is read from the repository at build time. Generated bundles (data.js, news-data.js) appear as hashes instead of being quoted back into themselves; docs.js records its own checksum in data/docs.log.",
-  "totalLines": 3518,
+  "totalLines": 4594,
   "tradeCount": 170,
   "logs": [
     {
       "path": "data/run.log",
-      "bytes": 2229,
-      "sha256": "8343c86d81fafc8fe163ed7ec84b6eb348edd3cdddb256ed298416c985070aa8",
-      "text": "=== stocks4cas simulation complete ===\nperiod     : 2026-03-01 -> 2026-09-01  (132 trading days)\nseed       : 42 (numpy default_rng) \u2014 re-running reproduces these numbers\ncapital    : 1,000,000 per strategy\nuniverse   : 10 tickers \u2014 MSFT, NVDA, AAPL, AMZN, JPM, XOM, JNJ, KO, TSLA, SPY\ngenerated  : 2026-09-16\n\nstrategy summary (sorted by net P&L)\nstrategy                          pnl     ret%  sharpe   maxDD% trades\nDollar-Cost Averaging       37,564.21     3.76    0.78    -4.11     81\nMA Crossover                29,769.67     2.98    1.10    -5.32      3\nBuy & Hold                  29,224.03     2.92    0.59    -8.34      1\nMean Reversion               9,966.77     1.00    1.12    -0.83     28\nMomentum                   -22,547.13    -2.25   -0.39    -8.41     55\nPairs Trading              -55,566.12    -5.56   -1.48    -6.15      2\n\ntrade log per strategy\n  Dollar-Cost Averaging      81 trades  2026-03-02 -> 2026-08-31  [BUY 81]\n  MA Crossover                3 trades  2026-06-01 -> 2026-08-14  [BUY 2, SELL 1]\n  Buy & Hold                  1 trades  2026-03-02 -> 2026-03-02  [BUY 1]\n  Mean Reversion             28 trades  2026-03-20 -> 2026-08-25  [BUY 16, SELL 12]\n  Momentum                   55 trades  2026-03-31 -> 2026-08-25  [BUY 30, SELL 25]\n  Pairs Trading               2 trades  2026-07-14 -> 2026-07-14  [BUY 1, SHORT 1]\n\ntotal trades: 170\n\noutputs (sha256)\n  34006f4b3e636c95d421b654c488de10e8280611985e5bf700fd5d4897038829  data/strategies.json       1,849 bytes\n  4e7ab7bc98aaee171440cda0e40072eadf6e734f3b1928830cb89d25f8b0477c  data/equity.json          12,107 bytes\n  dca8dadd8374e45152ad81b829cf94c917a82ed1e7d1968950393905cde9953a  data/trades.json          25,735 bytes\n  d67f2ed969090e194306d73eed6b9cfb7e9b543ac0d194a189ac8a9e9ee02818  data/prices.json          13,337 bytes\n  4b2e18eae000d1f70e0481c6c43443e41c03762a43cde7605b0304f0474d421a  data/trades.csv           11,841 bytes\n  fa54caee8452ae1bb986b282bf2785793ad0cf4dbe0928c1c2e862112ecdc82f  data.js                   53,174 bytes\n\nwrote JSON   -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data\nwrote bundle -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data.js\nwrote log    -> C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data\\run.log\n"
+      "bytes": 2386,
+      "sha256": "4a284dbbb38f84717d73896b7e60862db75db0fe056a817b5f9df4bb0a1fed75",
+      "text": "=== stocks4cas simulation complete ===\nperiod     : 2026-03-01 to 2026-09-01  (132 trading days)\nseed       : 42 (numpy default_rng), so re-running reproduces these numbers\ncapital    : 1,000,000 per strategy\nuniverse   : 10 tickers: MSFT, NVDA, AAPL, AMZN, JPM, XOM, JNJ, KO, TSLA, SPY\ngenerated  : 2026-09-16\nteaching   : 3 shapes and 5 game rounds (seed 20260105)\n\nstrategy summary (sorted by net P&L)\nstrategy                          pnl     ret%  sharpe   maxDD% trades\nDollar-Cost Averaging       37,564.21     3.76    0.78    -4.11     81\nMA Crossover                29,769.67     2.98    1.10    -5.32      3\nBuy & Hold                  29,224.03     2.92    0.59    -8.34      1\nMean Reversion               9,966.77     1.00    1.12    -0.83     28\nMomentum                   -22,547.13    -2.25   -0.39    -8.41     55\nPairs Trading              -55,566.12    -5.56   -1.48    -6.15      2\n\ntrade log per strategy\n  Dollar-Cost Averaging      81 trades  2026-03-02 to 2026-08-31  [BUY 81]\n  MA Crossover                3 trades  2026-06-01 to 2026-08-14  [BUY 2, SELL 1]\n  Buy & Hold                  1 trades  2026-03-02 to 2026-03-02  [BUY 1]\n  Mean Reversion             28 trades  2026-03-20 to 2026-08-25  [BUY 16, SELL 12]\n  Momentum                   55 trades  2026-03-31 to 2026-08-25  [BUY 30, SELL 25]\n  Pairs Trading               2 trades  2026-07-14 to 2026-07-14  [BUY 1, SHORT 1]\n\ntotal trades: 170\n\noutputs (sha256)\n  500cf4a0d6eaa9157c03a69631e2bd826c05347c584818cb2e8c58d28e0a69fc  data/strategies.json       1,850 bytes\n  4e7ab7bc98aaee171440cda0e40072eadf6e734f3b1928830cb89d25f8b0477c  data/equity.json          12,107 bytes\n  dca8dadd8374e45152ad81b829cf94c917a82ed1e7d1968950393905cde9953a  data/trades.json          25,735 bytes\n  d67f2ed969090e194306d73eed6b9cfb7e9b543ac0d194a189ac8a9e9ee02818  data/prices.json          13,337 bytes\n  cf354bfd8467d143629aba72b16bb387ae36584a6d85e299d8dd703e4ebaff47  data/lessons.json          2,655 bytes\n  4b2e18eae000d1f70e0481c6c43443e41c03762a43cde7605b0304f0474d421a  data/trades.csv           11,841 bytes\n  392da299aa1c5020d61a5207599d7d75af69300a74a772ee79145ee4a6fd3a15  data.js                   55,849 bytes\n\nwrote JSON   : C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data\nwrote bundle : C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data.js\nwrote log    : C:\\Users\\Jiang\\Downloads\\sfc\\stocks4cas\\data\\run.log\n"
     },
     {
       "path": "data/news.log",
@@ -21,8 +21,8 @@
   "outputs": [
     {
       "path": "data/strategies.json",
-      "bytes": 1849,
-      "sha256": "34006f4b3e636c95d421b654c488de10e8280611985e5bf700fd5d4897038829"
+      "bytes": 1850,
+      "sha256": "500cf4a0d6eaa9157c03a69631e2bd826c05347c584818cb2e8c58d28e0a69fc"
     },
     {
       "path": "data/equity.json",
@@ -40,14 +40,19 @@
       "sha256": "d67f2ed969090e194306d73eed6b9cfb7e9b543ac0d194a189ac8a9e9ee02818"
     },
     {
+      "path": "data/lessons.json",
+      "bytes": 2655,
+      "sha256": "cf354bfd8467d143629aba72b16bb387ae36584a6d85e299d8dd703e4ebaff47"
+    },
+    {
       "path": "data/trades.csv",
       "bytes": 11841,
       "sha256": "4b2e18eae000d1f70e0481c6c43443e41c03762a43cde7605b0304f0474d421a"
     },
     {
       "path": "data.js",
-      "bytes": 53174,
-      "sha256": "fa54caee8452ae1bb986b282bf2785793ad0cf4dbe0928c1c2e862112ecdc82f"
+      "bytes": 55849,
+      "sha256": "392da299aa1c5020d61a5207599d7d75af69300a74a772ee79145ee4a6fd3a15"
     },
     {
       "path": "news-data.js",
@@ -59,10 +64,10 @@
   "files": [
     {
       "path": "README.md",
-      "bytes": 3874,
-      "sha256": "3499211990fc076dbaa7b4537b97a63a6e92e81576dfe8c528324c71488788ce",
+      "bytes": 4676,
+      "sha256": "e6db1c96fc321c4d074df1525b9b4e4e5391b29bdfa9a5ae400e361d4a89825e",
       "lang": "markdown",
-      "lines": 76
+      "lines": 85
     },
     {
       "path": "requirements.txt",
@@ -80,10 +85,10 @@
     },
     {
       "path": "simulate.py",
-      "bytes": 21001,
-      "sha256": "3c4ec0475962c1e67e831ce806878b5a75667c9eb33443eaf6e47ad8a1c65a2a",
+      "bytes": 23936,
+      "sha256": "3040c419fbe263d1d723026d7254b2e796b882abf2342bc690049aa5e019f2b1",
       "lang": "python",
-      "lines": 489
+      "lines": 553
     },
     {
       "path": "fetch_news.py",
@@ -94,10 +99,10 @@
     },
     {
       "path": "build_docs.py",
-      "bytes": 6062,
-      "sha256": "ac74810dfcb5bb107361ab652b8610975c34d03659cf91c8be35dab68fdcd8bc",
+      "bytes": 6171,
+      "sha256": "5e396a3befcfb33e4d0366118bba6e7aab6154c3bd61b8d0dcab04f683da1a90",
       "lang": "python",
-      "lines": 199
+      "lines": 204
     },
     {
       "path": "build.py",
@@ -115,43 +120,43 @@
     },
     {
       "path": "common.js",
-      "bytes": 9198,
-      "sha256": "94611d181a3c4655302ef56ce24a3912d94d732357b35fe4af4a3c9862b269ba",
+      "bytes": 10142,
+      "sha256": "8f6b1b22834dca754973807245e2df28ab749db438bdd56d7dce740826b701b7",
       "lang": "javascript",
-      "lines": 218
+      "lines": 237
     },
     {
       "path": "documentary.js",
-      "bytes": 21845,
-      "sha256": "444db4385291a1fc0f5c69fd0140ff4a6f4fcd6ede71ce5394dc435f09c1eb67",
+      "bytes": 25547,
+      "sha256": "7507a34ea138ab088ef269c80bb8bb4c6e0b881ceec4d00a1c5da09c03f6a9ab",
       "lang": "javascript",
-      "lines": 376
+      "lines": 431
     },
     {
       "path": "script.js",
-      "bytes": 8765,
-      "sha256": "a369173b08bd82dc65aa4666c1727923330ba4ae4cf38e18d96fd57d6c4dd356",
+      "bytes": 10082,
+      "sha256": "f29acc59077ba551c006013ba417b017ca149cf605fe1ff9baad53bae6907ad6",
       "lang": "javascript",
-      "lines": 199
+      "lines": 235
     },
     {
       "path": "analysis.js",
-      "bytes": 7937,
-      "sha256": "2c40b1e36a1b6845de0863cd94751d7bb5a81c489b69f4d30947b87f8a33c462",
+      "bytes": 8004,
+      "sha256": "0210ce1ec1b4129ca9f819ec75b2a9d573edcb62b07e156db05c7518145c5182",
       "lang": "javascript",
       "lines": 187
     },
     {
       "path": "simulation.js",
-      "bytes": 6754,
-      "sha256": "2a77977b800f4c947a7a38d50890f6993dbc6685b503efe208fd8608a881dde5",
+      "bytes": 6753,
+      "sha256": "dee09092285a10b4adb3e751da5bb3afe55d3bb748a5cedb404ab29d3154b009",
       "lang": "javascript",
       "lines": 144
     },
     {
       "path": "news.js",
-      "bytes": 4749,
-      "sha256": "fe3e82e0aba1feb841b2491b77f8e5a497514b17d6a29958d866dc2a8cbe99e0",
+      "bytes": 4586,
+      "sha256": "73924d6760af1386db826ecde38e4b65e275351a1b1563ea9d8b0e715a468b49",
       "lang": "javascript",
       "lines": 98
     },
@@ -170,46 +175,74 @@
       "lines": 33
     },
     {
+      "path": "prerequisites.js",
+      "bytes": 2562,
+      "sha256": "c3e0dfbf3dc937a31cd59f32f97eebbb86edf414bb841be51f9c1dda0d75f09e",
+      "lang": "javascript",
+      "lines": 66
+    },
+    {
+      "path": "play.js",
+      "bytes": 7136,
+      "sha256": "7cca054365a98c2e03107aa9c4824fb2ef2b261365d251d955098fa86328b41d",
+      "lang": "javascript",
+      "lines": 175
+    },
+    {
       "path": "style.css",
-      "bytes": 16261,
-      "sha256": "dcf5dd007e45adf55a0e01244b7a2ffa58ece7366266baddb61bfd8ec300094c",
+      "bytes": 22383,
+      "sha256": "c12dc85511edeecf5532d5353a3a7e35a14b940fcceed2db28be20658497e9f0",
       "lang": "css",
-      "lines": 604
+      "lines": 766
     },
     {
       "path": "index.html",
-      "bytes": 5084,
-      "sha256": "7e6d62a7b8af2f5d06295f1595f7786698494484bbbf601474024eeb96f6b6cb",
+      "bytes": 10686,
+      "sha256": "000b9f2d75051c9c2833f5abfcee4306c7cde0704b9a8b89e52056ce283c04cc",
       "lang": "html",
-      "lines": 120
+      "lines": 201
     },
     {
       "path": "analysis.html",
-      "bytes": 3384,
-      "sha256": "3bbec4cb8afc2e6d5bc55cf29b98a20dda9dd1a23d06f6b2acf862ff7a5e9ca4",
+      "bytes": 3699,
+      "sha256": "6a18f015b121028a842dfd2ad887fadf7e671c7abd8be0472b224eb64fc1901d",
       "lang": "html",
-      "lines": 82
+      "lines": 85
     },
     {
       "path": "simulation.html",
-      "bytes": 4893,
-      "sha256": "b16efb5dab2beabcb5f35c574a4fd03b47d0ddc536689f45a64595802a3029f1",
+      "bytes": 5206,
+      "sha256": "03e64f7422fecec7afaac68720a843b16fccf7d1f18220f4d81d9b0eb2933d50",
       "lang": "html",
-      "lines": 118
+      "lines": 121
     },
     {
       "path": "news.html",
-      "bytes": 3500,
-      "sha256": "32a1411380c39bfd16c27e9bbd37bf63b8daa76a8ec3392437eefc8565f2b1c4",
+      "bytes": 3807,
+      "sha256": "2ca53c388e1c0455160805a39e887ab5b342374b5d07efe267f503ff0a562412",
       "lang": "html",
-      "lines": 83
+      "lines": 86
     },
     {
       "path": "about.html",
-      "bytes": 5374,
-      "sha256": "892a425ae078edd666894dd94109d722345cc85107b637fe54ce599996552655",
+      "bytes": 9869,
+      "sha256": "6c03644457e0e1ae29ca6a7f2d871578023fb4a94eb86a0141bfafa98c0386c6",
       "lang": "html",
-      "lines": 119
+      "lines": 200
+    },
+    {
+      "path": "prerequisites.html",
+      "bytes": 9794,
+      "sha256": "3f923654bae7e6489696d373e891e5b3324874979dc34773227c45a01dfe3391",
+      "lang": "html",
+      "lines": 213
+    },
+    {
+      "path": "play.html",
+      "bytes": 4635,
+      "sha256": "2842e0b5f27a43e9c8a22f2ffd77872f16adbbf91ee87336724a396c87da8cd3",
+      "lang": "html",
+      "lines": 101
     }
   ]
 }
